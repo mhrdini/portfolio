@@ -5,11 +5,9 @@ interface CardProps {}
 const Card: React.FC<CardProps> = () => {
   return (
     <>
-      <a href="">
-        <h1>
-          <div>Test</div>
-        </h1>
-      </a>
+      <h1>
+        <div className="text-5xl">Test</div>
+      </h1>
     </>
   )
 }
