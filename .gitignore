@@ -15,6 +15,7 @@ node_modules/
 !.yarn/plugins
 .pnp.*
 ./yarn/install-state.gz
+yarn.lock
 
 
 # environment variables
