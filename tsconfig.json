@@ -1,6 +1,17 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
+//    "target": "ES2022",
+//    "lib": ["dom", "dom.iterable", "esnext"],
+//    "skipLibCheck": true,
+//    "strict": true,
+//    "importsNotUsedAsValues": "remove",
+//    "forceConsistentCasingInFileNames": true,
+//    "noEmit": false,
+//    "module": "esnext",
+//    "moduleResolution": "node",
+//    "resolveJsonModule": true,
+//    "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "esModuleInterop": true,
