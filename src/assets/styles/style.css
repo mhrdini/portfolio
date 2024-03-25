@@ -1,0 +1,6 @@
+@import url('themes.css');
+@import url('typography.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
