@@ -1,7 +1,5 @@
 {
-  "ignorePatterns": [
-    "**/*.css"
-  ],
+  "ignorePatterns": ["**/*.css"],
   "env": {
     "browser": true,
     "es2021": true,
@@ -17,18 +15,13 @@
       "env": {
         "node": true
       },
-      "files": [
-        ".eslintrc.{js,cjs}"
-      ],
+      "files": [".eslintrc.{js,cjs}"],
       "parserOptions": {
         "sourceType": "script"
       }
     },
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx"
-      ],
+      "files": ["**/*.ts", "**/*.tsx"],
       "plugins": [
         "react",
         "unused-imports",
@@ -36,9 +29,7 @@
         "import",
         "simple-import-sort"
       ],
-      "extends": [
-        "plugin:tailwindcss/recommended"
-      ],
+      "extends": ["plugin:tailwindcss/recommended"],
       "parserOptions": {
         "project": "./tsconfig.json"
       },
@@ -90,9 +81,7 @@
       }
     },
     {
-      "files": [
-        "**/*.astro"
-      ],
+      "files": ["**/*.astro"],
       "plugins": [
         "astro",
         "react",
@@ -101,15 +90,11 @@
         "import",
         "simple-import-sort"
       ],
-      "extends": [
-        "plugin:tailwindcss/recommended"
-      ],
+      "extends": ["plugin:tailwindcss/recommended"],
       "parser": "astro-eslint-parser",
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
-        "extraFileExtensions": [
-          ".astro"
-        ]
+        "extraFileExtensions": [".astro"]
       },
       "rules": {
         "astro/no-conflict-set-directives": "error",
@@ -131,18 +116,14 @@
         "import/no-unresolved": [
           "error",
           {
-            "ignore": [
-              "@/*"
-            ]
+            "ignore": ["@/*"]
           }
         ],
         // Disable no-unresolved rule for .astro files
         "react/jsx-filename-extension": [
           1,
           {
-            "extensions": [
-              ".astro"
-            ]
+            "extensions": [".astro"]
           }
         ],
         // Accept jsx in astro files
@@ -186,8 +167,6 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {}
 }

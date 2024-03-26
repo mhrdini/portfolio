@@ -1,17 +1,16 @@
 ---
-import Typography from '@/components/Typography.astro'
+import '@/assets/style.css'
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <Typography />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
+  <body class="m-0 box-border min-h-screen p-0">
     <slot />
   </body>
 </html>
