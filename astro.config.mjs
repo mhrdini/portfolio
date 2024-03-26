@@ -16,7 +16,7 @@ const dataset = PUBLIC_SANITY_DATASET
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), sanity({
+  integrations: [tailwind({ applyBaseStyles: false }), sanity({
     projectId,
     dataset,
     studioBasePath: '/admin',
