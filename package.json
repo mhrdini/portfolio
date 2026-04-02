@@ -1,0 +1,61 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.12.4",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "ui": "turbo run ui",
+    "postui": "pnpm run barrels",
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "commit": "printf '' > .git/COMMIT_EDITMSG && git-cz",
+    "barrels": "node scripts/generate-barrels.js"
+  },
+  "peerDependencies": {
+    "inquirer": "catalog:"
+  },
+  "validate-branch-name": {
+    "pattern": "^(main){1}$|^(feat|fix|hotfix|release|chore)/.+$",
+    "errorMsg": "Invalid branch name \n Ex. [master, develop, feature/feature-info, fix/112-fix-info, hotfix/112-hotfix-info, release/1.0.0, chores/chores-info]"
+  },
+  "dependencies": {
+    "dotenv-expand": "catalog:"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@commitlint/cz-commitlint": "catalog:",
+    "@commitlint/load": "catalog:",
+    "@commitlint/types": "catalog:",
+    "barrelsby": "catalog:",
+    "commitizen": "catalog:",
+    "conventional-changelog-conventionalcommits": "catalog:",
+    "dotenv": "catalog:",
+    "dotenv-cli": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "lodash-es": "catalog:",
+    "prettier": "catalog:",
+    "tsx": "catalog:",
+    "turbo": "catalog:",
+    "validate-branch-name": "catalog:"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,jsx,tsx,css,html,vue}": [
+      "eslint --fix"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turborepo.dev/microfrontends/schema.json",
+  "applications": {
+    "@apps/web": {
+      "development": {
+        "local": {
+          "port": 3000
+        }
+      }
+    }
+  }
+}
