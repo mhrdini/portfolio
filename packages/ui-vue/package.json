@@ -1,11 +1,13 @@
 {
   "name": "@portfolio/ui-vue",
   "exports": {
-    ".": "./src/components/index.ts"
+    ".": "./dist/index.mjs"
   },
   "scripts": {
     "ui": "pnpm dlx shadcn-vue@latest",
-    "ui:vue": "pnpm dlx shadcn-vue@latest"
+    "ui:vue": "pnpm dlx shadcn-vue@latest",
+    "build": "vite build",
+    "dev": "vite build --watch"
   },
   "peerDependencies": {
     "vue": "catalog:vue"
@@ -24,10 +26,12 @@
     "@portfolio/config-typescript": "workspace:*",
     "@tailwindcss/cli": "catalog:tailwindcss",
     "@tailwindcss/postcss": "catalog:tailwindcss",
+    "@vitejs/plugin-vue": "catalog:vite",
     "autoprefixer": "catalog:tailwindcss",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "tailwindcss": "catalog:tailwindcss",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite": "catalog:vite"
   }
 }

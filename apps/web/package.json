@@ -15,11 +15,8 @@
     "@portfolio/ui": "workspace:*",
     "@portfolio/ui-vue": "workspace:*",
     "@tailwindcss/vite": "catalog:tailwindcss",
-    "class-variance-authority": "catalog:ui",
-    "clsx": "catalog:ui",
     "lucide-vue-next": "catalog:ui",
     "nuxt": "catalog:nuxt",
-    "tailwind-merge": "catalog:ui",
     "tailwindcss": "catalog:tailwindcss",
     "vue": "catalog:vue",
     "vue-router": "catalog:vue"

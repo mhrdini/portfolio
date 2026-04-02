@@ -11,27 +11,21 @@ export default defineNuxtConfig({
     },
   },
   css: ['./app/assets/css/styles.css'],
+  build: {
+    transpile: [
+      '@portfolio/ui-vue',
+    ],
+  },
+
   vite: {
     base: '',
-    plugins: [
-      tailwindcss(),
-    ],
-    optimizeDeps: {
-      include: [
-        'class-variance-authority',
-        'reka-ui',
-        'clsx',
-        'tailwind-merge',
-      ],
-    },
+    plugins: [tailwindcss()],
   },
   fonts: {
     families: [
-      {
-        name: 'Geist',
-        provider: 'google',
-        weights: ['100 900'],
-      },
+      { name: 'Inter', provider: 'fontsource' },
+      { name: 'JetBrains Mono', provider: 'fontsource' },
+      { name: 'Noto Sans Japanese', provider: 'google' },
     ],
   },
 })

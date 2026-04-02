@@ -2,7 +2,7 @@
 @import '@portfolio/ui/globals.css';
 
 @theme inline {
-  --font-display: "Geist", "sans-serif";
+  --font-display:  "Inter","Yu Gothic Pr6N","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
 }
 
 html {
