@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@lucide/vue": "catalog:ui",
     "@nuxt/eslint": "catalog:nuxt",
     "@nuxt/fonts": "catalog:nuxt",
     "@portfolio/ui": "workspace:*",

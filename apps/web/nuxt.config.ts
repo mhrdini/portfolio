@@ -5,18 +5,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/fonts'],
+  css: ['./app/assets/css/styles.css'],
   eslint: {
     config: {
       standalone: false,
     },
   },
-  css: ['./app/assets/css/styles.css'],
   build: {
     transpile: [
       '@portfolio/ui-vue',
     ],
   },
-
   vite: {
     base: '',
     plugins: [tailwindcss()],

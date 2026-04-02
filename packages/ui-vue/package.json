@@ -1,8 +1,11 @@
 {
   "name": "@portfolio/ui-vue",
+  "type": "module",
   "exports": {
     ".": "./dist/index.mjs"
   },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "scripts": {
     "ui": "pnpm dlx shadcn-vue@latest",
     "ui:vue": "pnpm dlx shadcn-vue@latest",

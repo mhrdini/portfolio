@@ -1,6 +1,3 @@
-shellEmulator: true
-
-trustPolicy: no-downgrade
 packages:
   - apps/*
   - packages/*
@@ -43,6 +40,7 @@ catalogs:
     autoprefixer: ^10.4.27
     tailwindcss: ^4.2.2
   ui:
+    '@lucide/vue': ^1.0.0
     '@vueuse/core': 14.2.1
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
@@ -58,3 +56,7 @@ catalogs:
     vue-router: ^5.0.4
 
 linkWorkspacePackages: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade

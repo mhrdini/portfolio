@@ -1,3 +1,10 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@portfolio/ui-vue": ["../../packages/ui-vue/src/components"],
+      "@portfolio/ui": ["../../packages/ui/src"]
+    }
+  }
 }

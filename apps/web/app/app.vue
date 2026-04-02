@@ -1,16 +1,36 @@
 <script setup lang="ts">
+import { SunMoon } from '@lucide/vue'
 import { Button, ToggleGroup, ToggleGroupItem } from '@portfolio/ui-vue'
 
-const value = ref('en')
+const lang = ref<string | null>('en')
+const langModelValue = computed({
+  get: () => lang.value,
+  set: (val) => {
+    if (val === undefined || val === null)
+      return
+    lang.value = val
+  },
+})
+const theme = ref<'light' | 'dark'>('light')
+watch(theme, (newTheme) => {
+  document.body.setAttribute('class', newTheme)
+})
+// Toggle function
+function toggleTheme() {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
 </script>
 
 <template>
   <div class="min-h-screen w-full">
     <div class="m-auto flex flex-col items-center gap-2">
       <Button variant="outline">
-        {{ value === 'jp' ? 'ハロー、ワールド！' : 'Hello, world!' }}
+        {{ lang === 'jp' ? 'ハロー、ワールド！' : 'Hello, world!' }}
       </Button>
-      <ToggleGroup v-model="value" variant="outline">
+      <ToggleGroup
+        v-model="langModelValue"
+        variant="outline"
+      >
         <ToggleGroupItem value="en">
           EN
         </ToggleGroupItem>
@@ -18,6 +38,12 @@ const value = ref('en')
           JP
         </ToggleGroupItem>
       </ToggleGroup>
+      <Button variant="outline" @click="toggleTheme">
+        <SunMoon />
+      </Button>
+      <Button class="font-mono">
+        return 0;
+      </Button>
     </div>
   </div>
 </template>

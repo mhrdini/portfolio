@@ -2,7 +2,8 @@
 @import '@portfolio/ui/globals.css';
 
 @theme inline {
-  --font-display:  "Inter","Yu Gothic Pr6N","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-display:  "Inter","Yu Gothic Pr6N","Yu Gothic","Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", system-ui, sans-serif;
 }
 
 html {
