@@ -2,7 +2,7 @@
 @import '@portfolio/ui/globals.css';
 
 @theme inline {
-  --font-display:  "Inter","Yu Gothic Pr6N","Yu Gothic","Noto Sans JP", system-ui, sans-serif;
+  --font-inter:  "Inter","Yu Gothic Pr6N","Yu Gothic","Noto Sans JP", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", system-ui, sans-serif;
 }
 
@@ -13,7 +13,8 @@ html {
 body {
   min-width: 100%;
   min-height: 100%;
-  font-family: var(--font-display);
+  font-family: var(--font-inter);
+  
   & > div#__nuxt {
     min-width: 100%;
     min-height: 100%;

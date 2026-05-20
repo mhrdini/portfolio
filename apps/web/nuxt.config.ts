@@ -11,20 +11,20 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
-  build: {
-    transpile: [
-      '@portfolio/ui-vue',
-    ],
-  },
   vite: {
     base: '',
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        '@lucide/vue',
+      ],
+    },
   },
   fonts: {
     families: [
-      { name: 'Inter', provider: 'fontsource' },
-      { name: 'JetBrains Mono', provider: 'fontsource' },
-      { name: 'Noto Sans Japanese', provider: 'google' },
+      { name: 'Inter', provider: 'google', weights: ['100 900'] },
+      { name: 'JetBrains Mono', provider: 'fontsource', weights: ['100 800'] },
+      { name: 'Noto Sans Japanese', provider: 'google', weights: ['100 900'] },
     ],
   },
 })
