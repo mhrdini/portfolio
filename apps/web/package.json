@@ -14,7 +14,6 @@
     "@nuxt/eslint": "catalog:nuxt",
     "@nuxt/fonts": "catalog:nuxt",
     "@portfolio/ui": "workspace:*",
-    "@portfolio/ui-vue": "workspace:*",
     "@tailwindcss/vite": "catalog:tailwindcss",
     "lucide-vue-next": "catalog:ui",
     "nuxt": "catalog:nuxt",
