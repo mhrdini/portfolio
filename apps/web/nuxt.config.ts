@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/fonts', 'motion-v/nuxt'],
+  modules: ['@nuxt/eslint', '@nuxt/fonts', 'motion-v/nuxt', '@vueuse/nuxt'],
   css: ['./app/assets/css/styles.css'],
   eslint: {
     config: {
@@ -23,8 +23,10 @@ export default defineNuxtConfig({
   fonts: {
     families: [
       { name: 'Inter', provider: 'google', weights: ['100 900'] },
+      { name: 'IBM Plex Sans', provider: 'google', weights: ['100 700'] },
       { name: 'JetBrains Mono', provider: 'fontsource', weights: ['100 800'] },
       { name: 'Noto Sans Japanese', provider: 'google', weights: ['100 900'] },
+      { name: 'Zen Kaku Gothic New', provider: 'google', weights: ['300', '400', '500', '700', '900'] },
     ],
   },
 })
