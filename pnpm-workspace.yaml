@@ -35,7 +35,9 @@ catalogs:
   nuxt:
     '@nuxt/eslint': ^1.15.2
     '@nuxt/fonts': ^0.14.0
+    '@vueuse/nuxt': 14.3.0
     nuxt: ^4.4.2
+
   tailwindcss:
     '@tailwindcss/cli': ^4.2.2
     '@tailwindcss/postcss': ^4.2.2
