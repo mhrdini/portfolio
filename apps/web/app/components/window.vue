@@ -16,8 +16,10 @@ const props = withDefaults(
 const containerRef = inject<Ref<HTMLElement | null>>('containerRef')
 
 const el = useTemplateRef<HTMLElement>('el')
+const dragHandle = useTemplateRef<HTMLElement>('dragHandle')
 const { x, y } = useDraggable(el, {
   containerElement: containerRef,
+  handle: dragHandle,
 })
 
 const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -74,7 +76,10 @@ onMounted(() => {
         delay: 1.7,
       }"
     >
-      <button class="w-full h-6 border-b-1 flex items-center justify-between ml-auto">
+      <button
+        ref="dragHandle"
+        class="outline-none w-full h-6 border-b-1 flex items-center justify-between ml-auto"
+      >
         <span>{{ title }}</span>
       </button>
       <div class="py-1">
