@@ -29,7 +29,7 @@ provide('containerRef', containerRef)
       <!-- workspace -->
       <Motion
         as="div"
-        class="bg-dot-grid flex-1"
+        class="flex-1"
         :initial="{
           opacity: 0,
         }"
@@ -44,12 +44,16 @@ provide('containerRef', containerRef)
       >
         <div
           ref="containerRef"
-          class="size-full relative flex-1"
+          class=" size-full relative flex-1"
         >
+          <!-- cursor follow background -->
+          <CursorFollowBackground />
+          <!-- windows -->
+          <WelcomeWindow />
           <!-- name card -->
           <Motion
             as="header"
-            class="bg-white relative z-10 cursor-default w-min top-0  px-10 py-7
+            class="bg-white relative z-10 cursor-default w-min top-0  px-9 py-7
           ft-0"
             :initial="{
               opacity: 0,
@@ -173,8 +177,6 @@ provide('containerRef', containerRef)
               }"
             />
           </Motion>
-          <!-- windows -->
-          <WelcomeWindow />
         </div>
       </Motion>
     </Motion>
