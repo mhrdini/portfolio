@@ -152,19 +152,15 @@ function handleMouseMove(e: MouseEvent) {
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')!
-  resize()
 
   resizeObserver = new ResizeObserver(resize)
   resizeObserver.observe(canvasRef.value!)
-
-  window.addEventListener('mousemove', handleMouseMove)
 
   setTimeout(() => {
     resize()
     animate()
   }, 1900)
-
-  animate()
+  window.addEventListener('mousemove', handleMouseMove)
 })
 
 onUnmounted(() => {
