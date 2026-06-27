@@ -1,10 +1,10 @@
-type IconState = {
+export type IconState = {
   x?: number
   y?: number
   zIndex: number
 }
 
-type WindowState = {
+export type WindowState = {
   x?: number
   y?: number
   zIndex: number
