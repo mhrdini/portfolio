@@ -1,49 +1,46 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    initialX?: number
-    initialY?: number
-    width?: number
-    height?: number
-    title?: string
-  }>(),
-  {
-    width: 375,
-    height: 200,
-  },
-)
-
-const containerRef = inject<Ref<HTMLElement | null>>('containerRef')
-
-const el = useTemplateRef<HTMLElement>('el')
-const dragHandle = useTemplateRef<HTMLElement>('dragHandle')
-const { x, y } = useDraggable(el, {
-  containerElement: containerRef,
-  handle: dragHandle,
-})
+const props = defineProps<{
+  id: WindowId
+  title?: string
+}>()
 
 const { width: windowWidth, height: windowHeight } = useWindowSize()
+const containerRef = inject<Ref<HTMLElement | null>>('containerRef')
 
-// set initial x and y value, prioritising:
-// - initialX and initialY props
-// - container ref bounding rect
-// - window width and height
+const store = useWindowsStore()
+const { windows } = storeToRefs(store)
+const window = computed(() => windows.value[props.id])
+
+const el = useTemplateRef<HTMLElement>('el')
+// const dragHandle = useTemplateRef<HTMLElement>('dragHandle')
+
+const { x, y } = useDraggable(el, {
+  containerElement: containerRef,
+  // handle: dragHandle,
+  onMove({ x, y }) {
+    store.patchWindow(props.id, { x, y })
+  },
+})
+
 onMounted(() => {
   const rect = containerRef?.value?.getBoundingClientRect()
 
-  if (!rect) {
-    x.value = props.initialX ?? (windowWidth.value - (props.width)) / 2
-    y.value = props.initialY ?? (windowHeight.value - (props.height)) / 2
-    return
-  }
+  const initialX
+    = window.value.x
+      ?? (rect
+        ? rect.left + (rect.width - window.value.width) / 2
+        : (windowWidth.value - window.value.width) / 2)
 
-  x.value
-    = props.initialX
-      ?? rect.left + (rect.width - props.width) / 2
+  const initialY
+    = window.value.y
+      ?? (rect
+        ? rect.top + (rect.height - window.value.height) / 2
+        : (windowHeight.value - window.value.height) / 2)
 
-  y.value
-    = props.initialY
-      ?? rect.top + (rect.height - props.height) / 2
+  x.value = initialX
+  y.value = initialY
+
+  store.patchWindow(props.id, { x: initialX, y: initialY })
 })
 </script>
 
@@ -51,16 +48,18 @@ onMounted(() => {
   <div
     ref="el"
     :style="{
-      left: `${x}px`,
-      top: `${y}px`,
-      width: `${props.width}px`,
-      height: `${props.height}px`,
+      left: `${window.x}px`,
+      top: `${window.y}px`,
+      width: `${window.width}px`,
+      height: `${window.height}px`,
+      zIndex: 30 + window.zIndex,
     }"
-    class="z-20 absolute"
+    class="absolute"
+    @pointerdown="store.focus(props.id)"
   >
     <Motion
       as="div"
-      class="border-1 text-sm size-full border-black *:px-3 bg-white
+      class="size-full flex flex-col border-1 border-black bg-white text-sm *:not-first:px-3
     cursor-default select-none"
       :initial="{
         opacity: 0,
@@ -76,13 +75,18 @@ onMounted(() => {
         delay: 1.7,
       }"
     >
-      <button
-        ref="dragHandle"
-        class="outline-none w-full h-6 border-b-1 flex items-center justify-between ml-auto"
+      <div
+        class="shrink-0 pl-3 outline-none w-full border-b-1 flex items-center justify-between ml-auto"
       >
         <span>{{ title }}</span>
-      </button>
-      <div class="py-1">
+        <button
+          class="p-1 border-l-1 border-black text-black items-center justify-center flex
+        hover:bg-taupe-300 active:bg-taupe-400"
+        >
+          <Icon name="lucide:minus" />
+        </button>
+      </div>
+      <div class="py-1 flex-1 overflow-y-auto">
         <slot />
       </div>
     </Motion>
