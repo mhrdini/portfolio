@@ -9,7 +9,8 @@ const containerRef = inject<Ref<HTMLElement | null>>('containerRef')
 
 const store = useWindowsStore()
 const { windows } = storeToRefs(store)
-const window = computed(() => windows.value[props.id])
+// important: don't use name 'window'
+const currentWindow = computed(() => windows.value[props.id])
 
 const el = useTemplateRef<HTMLElement>('el')
 // const dragHandle = useTemplateRef<HTMLElement>('dragHandle')
@@ -26,16 +27,16 @@ onMounted(() => {
   const rect = containerRef?.value?.getBoundingClientRect()
 
   const initialX
-    = window.value.x
+    = currentWindow.value.x
       ?? (rect
-        ? rect.left + (rect.width - window.value.width) / 2
-        : (windowWidth.value - window.value.width) / 2)
+        ? rect.left + (rect.width - currentWindow.value.width) / 2
+        : (windowWidth.value - currentWindow.value.width) / 2)
 
   const initialY
-    = window.value.y
+    = currentWindow.value.y
       ?? (rect
-        ? rect.top + (rect.height - window.value.height) / 2
-        : (windowHeight.value - window.value.height) / 2)
+        ? rect.top + (rect.height - currentWindow.value.height) / 2
+        : (windowHeight.value - currentWindow.value.height) / 2)
 
   x.value = initialX
   y.value = initialY
@@ -48,15 +49,16 @@ onMounted(() => {
   <div
     ref="el"
     :style="{
-      left: `${window.x}px`,
-      top: `${window.y}px`,
-      width: `${window.width}px`,
-      height: `${window.height}px`,
-      zIndex: 30 + window.zIndex,
+      left: `${currentWindow.x}px`,
+      top: `${currentWindow.y}px`,
+      width: `${currentWindow.width}px`,
+      height: `${currentWindow.height}px`,
+      zIndex: 30 + currentWindow.zIndex,
     }"
     class="absolute"
     @pointerdown="store.focus(props.id)"
   >
+    <WindowResizeHandles :id="id" />
     <Motion
       as="div"
       class="size-full flex flex-col border-1 border-black bg-white text-sm *:not-first:px-3
