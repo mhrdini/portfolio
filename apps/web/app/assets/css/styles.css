@@ -2,8 +2,18 @@
 @import '@portfolio/ui/globals.css';
 
 @theme inline {
-  --font-main:  "IBM Plex Sans","Yu Gothic Pr6N","Yu Gothic","Zen Kaku Gothic New", system-ui, sans-serif;
+  /* TYPOGRAPHY - TYPE SCALE */
+  --text-3xs: 0.5875rem;
+  --text-3xs--line-height: 1.0;
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-2xs--line-height: 1.2;
+
+  /* TYPOGRAPHY - FONTS */
+  --font-main:  "IBM Plex Sans","Zen Kaku Gothic New", system-ui, sans-serif;
+  --font-inter:  "Inter","Zen Kaku Gothic New", system-ui, sans-serif;
+  --font-geist:  "Geist","Zen Kaku Gothic New", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", system-ui, sans-serif;
+  --font-ja-serif: "Shippori Mincho B1", Georgia, Cambria, 'Times New Roman', ui-serif, serif;
 } 
 
 html {
@@ -13,7 +23,7 @@ html {
 body {
   min-width: 100%;
   min-height: 100%;
-  font-family: var(--font-main);
+  font-family: var(--font-geist);
   
   & > div#__nuxt {
     min-width: 100%;
@@ -37,5 +47,25 @@ body {
     background-image:
       radial-gradient(circle, rgba(0,0,0,.1) 1.3px, transparent 1.3px);
     background-size: 18px 18px;
+  }
+
+  .cv-section {
+    @apply flex flex-col gap-8 *:flex *:flex-col *:gap-1
+    *:*:flex *:*:flex-col *:*:gap-3
+    *:*:first:flex *:*:first:flex-col sm:*:*:first:flex-row
+    *:*:first:gap-1 *:*:first:font-medium
+  *:*:first:text-lg *:*:*:last:text-neutral-400;
+  }
+
+  .cv-section-title {
+    @apply font-medium text-lg;
+  }
+
+  .cv-padding {
+    @apply flex items-center justify-start px-2 py-1.5 ;
+  }
+
+  .cv-parent-padding {
+    @apply *:flex *:px-2 *:py-1.5 *:items-center *:justify-start;
   }
 }

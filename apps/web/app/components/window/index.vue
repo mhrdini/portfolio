@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useWindowAnimations } from '~/composables/windows/use-window-animations'
+
 const props = defineProps<{
   id: WindowId
   title?: string
@@ -23,7 +25,11 @@ const { x, y } = useDraggable(el, {
   },
 })
 
-onMounted(() => {
+const { enterOnMount, minimise } = useWindowAnimations(props.id)
+
+const registry = useRegistryStore()
+
+onMounted(async () => {
   const rect = containerRef?.value?.getBoundingClientRect()
 
   const initialX
@@ -42,6 +48,12 @@ onMounted(() => {
   y.value = initialY
 
   store.patchWindow(props.id, { x: initialX, y: initialY })
+  registry.registerWindow(props.id, el.value!)
+  await enterOnMount()
+})
+
+onUnmounted(() => {
+  registry.unregisterWindow(props.id)
 })
 </script>
 
@@ -55,35 +67,23 @@ onMounted(() => {
       height: `${currentWindow.height}px`,
       zIndex: 30 + currentWindow.zIndex,
     }"
-    class="absolute"
+    class="absolute "
     @pointerdown="store.focus(props.id)"
   >
     <WindowResizeHandles :id="id" />
-    <Motion
-      as="div"
-      class="size-full flex flex-col border-1 border-black bg-white text-sm *:not-first:px-3
+    <div
+      class="size-full flex flex-col border-1 border-black bg-white text-sm *:pl-3
+    *:not-first:pr-3
     cursor-default select-none"
-      :initial="{
-        opacity: 0,
-        scale: 0,
-      }"
-      :animate="{
-        opacity: 1,
-        scale: 1,
-      }"
-      :transition="{
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 1.7,
-      }"
     >
       <div
-        class="shrink-0 pl-3 outline-none w-full border-b-1 flex items-center justify-between ml-auto"
+        class="shrink-0 outline-none w-full border-b-1 flex items-center justify-between ml-auto"
       >
         <span>{{ title }}</span>
         <button
           class="p-1 border-l-1 border-black text-black items-center justify-center flex
         hover:bg-taupe-300 active:bg-taupe-400"
+          @click.stop="minimise"
         >
           <Icon name="lucide:minus" />
         </button>
@@ -91,6 +91,6 @@ onMounted(() => {
       <div class="py-1 flex-1 overflow-y-auto">
         <slot />
       </div>
-    </Motion>
+    </div>
   </div>
 </template>
