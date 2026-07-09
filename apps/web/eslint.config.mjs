@@ -16,6 +16,9 @@ export default withNuxt(antfu({
   ignores: ['.pnpm-store/**', '**/migrations/*'],
 }, {
   rules: {
+    'no-irregular-whitespace': ['off'],
+    'vue/no-irregular-whitespace': ['off'],
+    'vue/no-multiple-template-root': ['off'],
     'vue/max-attributes-per-line': ['error', {
       singleline: {
         max: 2,

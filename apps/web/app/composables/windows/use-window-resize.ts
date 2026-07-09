@@ -32,6 +32,7 @@ export function useWindowResize(id: WindowId) {
   })
 
   function startResize(direction: ResizeDirection, e: PointerEvent) {
+    // prevents drag
     e.preventDefault()
     e.stopPropagation()
 
