@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { useWindowAnimations } from '~/composables/windows/use-window-animations'
+
 const props = defineProps<{
   id: WindowId
   title?: string
 }>()
 
 const containerRef = inject<Ref<HTMLElement | null>>('containerRef')
+
+const registry = useRegistryStore()
 
 const store = useWindowsStore()
 const { windows } = storeToRefs(store)
@@ -18,6 +22,7 @@ const icon = computed(() => windows.value[props.id].icon)
 // basically dragging = no window opened
 const lastPointerUp = ref<number>()
 const dragged = ref(false)
+const { maximise } = useWindowAnimations(props.id)
 
 const el = useTemplateRef<HTMLElement>('el')
 const { x, y } = useDraggable(el, {
@@ -34,23 +39,27 @@ function onPointerDown() {
   store.focusIcon(props.id)
 }
 
-function onPointerUp() {
-  // don't treat a drag as a click
+async function onPointerUp() {
   if (dragged.value)
     return
 
   const now = performance.now()
 
-  if (
-    lastPointerUp.value != null
-    && now - lastPointerUp.value < 300
-  ) {
-    store.open(props.id)
-    lastPointerUp.value = undefined
-    return
-  }
+  const isDoubleClick
+    = lastPointerUp.value != null
+      && now - lastPointerUp.value < 300
 
   lastPointerUp.value = now
+
+  if (!isDoubleClick)
+    return
+
+  if (windows.value[props.id].open) {
+    store.focus(props.id)
+  }
+  else {
+    await maximise()
+  }
 }
 
 const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -77,6 +86,12 @@ onMounted(() => {
     x: initialX,
     y: initialY,
   })
+
+  registry.registerIcon(props.id, el.value!)
+})
+
+onUnmounted(() => {
+  registry.unregisterIcon(props.id)
 })
 </script>
 
@@ -100,7 +115,7 @@ onMounted(() => {
     <!-- title -->
     <div
       class="px-2 text-sm whitespace-nowrap font-mono font-bold bg-black text-white
-    group-focus:bg-taupe-400 group-focus:text-black border-t-1 border-black"
+     border-t-1 border-black"
     >
       {{ props.title }}
     </div>

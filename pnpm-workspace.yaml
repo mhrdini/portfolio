@@ -50,6 +50,7 @@ catalogs:
     '@lucide/vue': ^1.0.0
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
+    lenis: ^1.3.25
     lucide-vue-next: ^1.0.0
     motion-v: ^2.2.1
     tailwind-merge: ^3.5.0

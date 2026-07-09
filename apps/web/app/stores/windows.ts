@@ -1,6 +1,6 @@
 export type IconState = {
-  x?: number
-  y?: number
+  x: number
+  y: number
   zIndex: number
 }
 
@@ -25,7 +25,7 @@ function createDefaultWindows() {
       },
       width: 375,
       height: 200,
-      open: true,
+      open: false,
     },
     cv: {
       zIndex: 1,
@@ -57,18 +57,14 @@ export const useWindowsStore = defineStore('windows', () => {
   const highestZIcon = computed(() => Math.max(...Object.values(windows.value).map(w => w.icon.zIndex), 0))
 
   function focus(id: WindowId) {
-    console.log('focus window:', id, '> with index', highestZ.value + 1)
     windows.value[id].zIndex = highestZ.value + 1
   }
 
   function focusIcon(id: WindowId) {
-    console.log('focus icon:', id, '> with index', highestZIcon.value + 1)
     windows.value[id].icon.zIndex = highestZIcon.value + 1
   }
 
   function open(id: WindowId) {
-    console.log('open window:', id)
-
     windows.value[id].open = true
     focus(id)
   }

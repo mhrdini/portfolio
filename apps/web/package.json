@@ -18,6 +18,7 @@
     "@portfolio/ui": "workspace:*",
     "@tailwindcss/vite": "catalog:tailwindcss",
     "@vueuse/nuxt": "catalog:nuxt",
+    "lenis": "catalog:ui",
     "lucide-vue-next": "catalog:ui",
     "motion-v": "catalog:ui",
     "nuxt": "catalog:nuxt",
