@@ -381,7 +381,9 @@
       <h4 class="cv-padding">
         本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）
       </h4>
-      <p class="cv-padding min-h-48 !items-start">
+      <p
+        class="cv-padding min-h-24 !items-start"
+      >
         <!-- answer -->
       </p>
     </section>
