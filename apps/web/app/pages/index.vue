@@ -1,6 +1,7 @@
+import { CvEn } from '../../.nuxt/components';
 <script setup lang="ts">
 </script>
 
 <template>
-  <CvJa />
+  <CvJa2 />
 </template>
