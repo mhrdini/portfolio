@@ -120,8 +120,26 @@
         justify-center
       "
         >
-          <div class="aspect-[3/4] w-28 border text-center text-[10px] p-2">
-            写真を貼る位置
+          <div
+            class="aspect-[3/4] w-28 border text-center text-[10px] p-2 flex
+          flex-col gap-3 items-center justify-center"
+          >
+            <div>
+              写真を貼る位置
+            </div>
+            <div
+              class="grid grid-cols-[0.5rem_auto] grid-flow-row
+            *:items-center *:justify-center *:text-left"
+            >
+              <p>1. </p>
+              <p>縦 36～40 mm<br>横 24～30 mm</p>
+              <p>2. </p>
+              <p>本人単身胸から上</p>
+              <p>3. </p>
+              <p>裏面にのりづけ</p>
+              <p>4. </p>
+              <p>裏面に氏名記入</p>
+            </div>
           </div>
         </aside>
       </div>

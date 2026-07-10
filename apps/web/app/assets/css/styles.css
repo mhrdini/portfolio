@@ -66,6 +66,6 @@ body {
   }
 
   .cv-parent-padding {
-    @apply *:flex *:px-2 *:py-1.5 *:items-center *:justify-start;
+    @apply *:flex *:px-2 *:py-1.5 *:items-center;
   }
 }
