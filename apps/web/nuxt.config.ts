@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/icon',
     '@pinia/nuxt',
+    '@nuxtjs/sanity',
   ],
   css: [
     './app/assets/css/styles.css',

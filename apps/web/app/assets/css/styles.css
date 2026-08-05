@@ -49,7 +49,7 @@ body {
     background-size: 18px 18px;
   }
 
-  .cv-section {
+  .resume-section {
     @apply flex flex-col gap-8 *:flex *:flex-col *:gap-1
     *:*:flex *:*:flex-col *:*:gap-3
     *:*:first:flex *:*:first:flex-col sm:*:*:first:flex-row
@@ -57,15 +57,15 @@ body {
   *:*:first:text-lg *:*:*:last:text-neutral-400;
   }
 
-  .cv-section-title {
+  .resume-section-title {
     @apply font-medium text-lg;
   }
 
-  .cv-padding {
+  .resume-padding {
     @apply flex items-center justify-start px-2 py-1.5 ;
   }
 
-  .cv-parent-padding {
+  .resume-parent-padding {
     @apply *:flex *:px-2 *:py-1.5 *:items-center;
   }
 }

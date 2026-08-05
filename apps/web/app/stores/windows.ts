@@ -27,7 +27,7 @@ function createDefaultWindows() {
       height: 200,
       open: false,
     },
-    cv: {
+    resume: {
       zIndex: 1,
       icon: {
         x: 30,

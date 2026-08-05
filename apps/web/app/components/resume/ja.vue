@@ -24,16 +24,16 @@
           <div
             class="col-start-5 col-span-4 row-start-2 grid grid-cols-4 justify-self-end"
           >
-            <p class="cv-padding">
+            <p class="resume-padding">
               平成
             </p>
-            <p class="cv-padding">
+            <p class="resume-padding">
               年
             </p>
-            <p class="cv-padding">
+            <p class="resume-padding">
               月
             </p>
-            <p class="cv-padding">
+            <p class="resume-padding">
               日現在
             </p>
           </div>
@@ -45,11 +45,11 @@
             }"
             class="border-l-2 border-t-2 border-r border-b col-span-7 row-start-3 grid grid-cols-7"
           >
-            <h4 class="cv-padding">
+            <h4 class="resume-padding">
               ふりがな
             </h4>
 
-            <div class="cv-padding !items-start col-span-6">
+            <div class="resume-padding !items-start col-span-6">
               <!-- answer -->
               ー
             </div>
@@ -57,7 +57,7 @@
 
           <article
             class="border-r-2 border-t-2 border-b col-start-8 row-start-3
-          cv-padding !justify-around"
+          resume-padding !justify-around"
           >
             <p>男</p>
             <p>・</p>
@@ -66,42 +66,42 @@
 
           <!-- Row 4 -->
           <article class="border-l-2 border-r border-b col-span-7 row-start-4 grid grid-cols-7">
-            <h4 class="cv-padding !items-start !justify-between">
+            <h4 class="resume-padding !items-start !justify-between">
               <span>氏</span>
               <span>名</span>
             </h4>
 
-            <div class="cv-padding !items-start col-span-6">
+            <div class="resume-padding !items-start col-span-6">
               <!-- answer -->
               ー
             </div>
           </article>
 
           <article class="border-b border-r-2 col-start-8 row-start-4 flex flex-col">
-            <h4 class="cv-padding">
+            <h4 class="resume-padding">
               印
             </h4>
           </article>
 
           <!-- Row 5 -->
           <article class="border-l-2 col-span-8 row-start-5 grid grid-cols-8">
-            <h4 class="cv-padding border-r">
+            <h4 class="resume-padding border-r">
               生年月日
             </h4>
             <div class="grid grid-cols-12 col-span-7 border-r-2">
-              <div class="cv-padding col-span-3 !justify-around">
+              <div class="resume-padding col-span-3 !justify-around">
                 昭和・平成
               </div>
-              <div class="cv-padding col-span-2 !justify-end">
+              <div class="resume-padding col-span-2 !justify-end">
                 年
               </div>
-              <div class="cv-padding col-span-2 !justify-end">
+              <div class="resume-padding col-span-2 !justify-end">
                 月
               </div>
-              <div class="cv-padding col-span-2 !justify-end">
+              <div class="resume-padding col-span-2 !justify-end">
                 日生
               </div>
-              <div class="cv-padding col-span-3 !justify-around">
+              <div class="resume-padding col-span-3 !justify-around">
                 満（　　）歳
               </div>
             </div>
@@ -158,34 +158,34 @@
           class="border-b row-span-1 col-span-10 grid grid-cols-10"
         >
           <h4
-            class="border-t cv-padding"
+            class="border-t resume-padding"
           >
             ふりがな
           </h4>
           <div
-            class="border-t border-r cv-padding col-span-7"
+            class="border-t border-r resume-padding col-span-7"
           >
             <!-- answer -->
             ー
           </div>
           <div
-            class="border-t-2 cv-padding col-span-2"
+            class="border-t-2 resume-padding col-span-2"
           >
             （自宅電話）
           </div>
         </div>
         <!-- Row 2 + 3 -->
         <div class="row-span-2 col-span-10 grid grid-cols-10">
-          <h4 class="border-b col-span-1 cv-padding !items-start">
+          <h4 class="border-b col-span-1 resume-padding !items-start">
             <p>現</p>
             <p>住</p>
             <p>所</p>
           </h4>
           <div class="border-b border-r col-span-7 flex *:h-full">
-            <div class="cv-padding !items-start">
+            <div class="resume-padding !items-start">
               〒
             </div>
-            <div class="cv-padding grow !items-start">
+            <div class="resume-padding grow !items-start">
               <!-- answer -->
               ー
             </div>
@@ -195,7 +195,7 @@
               :style="{
                 borderBottomStyle: 'dotted',
               }"
-              class="border-y cv-padding row-span-1 row-start-2"
+              class="border-y resume-padding row-span-1 row-start-2"
             >
               （携帯電話）
             </div>
@@ -203,10 +203,10 @@
         </div>
         <!-- Row 4 -->
         <div class="border-b *:border-r col-span-10 grid grid-cols-10">
-          <h4 class="cv-padding col-span-1">
+          <h4 class="resume-padding col-span-1">
             E－mail
           </h4>
-          <div class="cv-padding col-span-7">
+          <div class="resume-padding col-span-7">
             <!-- answer -->
             ー
           </div>
@@ -218,31 +218,31 @@
           }"
           class="border-b col-span-10 grid grid-cols-10"
         >
-          <h4 class="cv-padding col-span-1">
+          <h4 class="resume-padding col-span-1">
             ふりがな
           </h4>
-          <div class="border-r cv-padding col-span-7">
+          <div class="border-r resume-padding col-span-7">
             <!-- answer -->
             ー
           </div>
-          <div class="cv-padding col-span-2">
+          <div class="resume-padding col-span-2">
             （連絡先電話）
           </div>
         </div>
         <!-- Row 6 (4rem) -->
         <div class="col-span-10 grid grid-cols-10">
-          <h4 class="cv-padding col-span-1 !items-start">
+          <h4 class="resume-padding col-span-1 !items-start">
             連 絡 先
           </h4>
           <div class="col-span-7 flex *:h-full">
-            <div class="cv-padding !items-start">
+            <div class="resume-padding !items-start">
               〒
             </div>
             <div class="border-r grow grid grid-rows-2">
-              <div class="cv-padding !justify-center">
+              <div class="resume-padding !justify-center">
                 （現住所以外に連絡を希望する場合のみ記入）
               </div>
-              <div class="cv-padding row-start-2">
+              <div class="resume-padding row-start-2">
                 <!-- answer -->
                 ー
               </div>
@@ -260,7 +260,7 @@
     *:*:not-first:border-solid *:*:not-last:justify-center"
     >
       <article
-        class="cv-parent-padding *:items-center *:justify-center"
+        class="resume-parent-padding *:items-center *:justify-center"
       >
         <h4>
           年
@@ -272,7 +272,7 @@
           学歴・職歴（各別にまとめて書く）
         </h4>
       </article>
-      <article class="cv-parent-padding">
+      <article class="resume-parent-padding">
         <p>2021</p>
         <p>11</p>
         <p>ー</p>
@@ -315,13 +315,13 @@
           </p>
         </div>
       </div>
-      <div class="border-b cv-padding">
+      <div class="border-b resume-padding">
         扶養家族数
       </div>
-      <div class="border-b cv-padding">
+      <div class="border-b resume-padding">
         配偶者
       </div>
-      <div class="border-b cv-padding border-r-0">
+      <div class="border-b resume-padding border-r-0">
         配偶者の扶養義務
       </div>
       <div
@@ -372,35 +372,35 @@
           </p>
         </div>
       </div>
-      <div class="cv-padding !justify-center">
+      <div class="resume-padding !justify-center">
         有・無
       </div>
-      <div class="cv-padding !justify-center border-r-0">
+      <div class="resume-padding !justify-center border-r-0">
         有・無
       </div>
     </section>
     <section>
-      <h4 class="cv-padding">
+      <h4 class="resume-padding">
         特技・趣味・得意科目など
       </h4>
-      <p class="cv-padding min-h-24 !items-start">
+      <p class="resume-padding min-h-24 !items-start">
         <!-- answer -->
       </p>
     </section>
     <section>
-      <h4 class="cv-padding">
+      <h4 class="resume-padding">
         志望の動機
       </h4>
-      <p class="cv-padding min-h-48 !items-start">
+      <p class="resume-padding min-h-48 !items-start">
         <!-- answer -->
       </p>
     </section>
     <section>
-      <h4 class="cv-padding">
+      <h4 class="resume-padding">
         本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）
       </h4>
       <p
-        class="cv-padding min-h-24 !items-start"
+        class="resume-padding min-h-24 !items-start"
       >
         <!-- answer -->
       </p>
@@ -447,10 +447,10 @@
       </div>
       <!-- right side -->
       <div class="col-span-3 border-l flex flex-col">
-        <h4 class="cv-padding !justify-center">
+        <h4 class="resume-padding !justify-center">
           （連絡先電話番号）
         </h4>
-        <p class="cv-padding !items-start">
+        <p class="resume-padding !items-start">
           <!-- answer -->
         </p>
       </div>

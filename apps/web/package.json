@@ -14,6 +14,7 @@
     "@nuxt/eslint": "catalog:nuxt",
     "@nuxt/fonts": "catalog:nuxt",
     "@nuxt/icon": "catalog:nuxt",
+    "@nuxtjs/sanity": "catalog:nuxt",
     "@pinia/nuxt": "catalog:nuxt",
     "@portfolio/ui": "workspace:*",
     "@tailwindcss/vite": "catalog:tailwindcss",

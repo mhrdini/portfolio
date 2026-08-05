@@ -48,7 +48,7 @@ provide('containerRef', containerRef)
           <!-- cursor follow background -->
           <!-- <CursorFollowBackground /> -->
           <!-- menu icons -->
-          <MenuIcon id="cv" title="cv">
+          <MenuIcon id="resume" title="resume">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -352,7 +352,7 @@ provide('containerRef', containerRef)
             I'm a software engineer based in Japan.
           </Window>
 
-          <Window id="cv" title="cv">
+          <Window id="resume" title="resume">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, rerum est amet sint error dicta veniam? Neque pariatur facere quae, consequuntur soluta vel eum. Sunt voluptas incidunt in iusto minus optio eligendi, nostrum facere quia, delectus explicabo ratione eos accusantium quod? Pariatur suscipit debitis voluptates recusandae. Numquam maiores cupiditate dolorum reprehenderit nisi, est ullam, eos labore optio quae molestias. Pariatur quasi culpa, quaerat cum officia blanditiis distinctio dolorum dicta officiis cupiditate molestias veritatis vitae ab! Enim quaerat, voluptatem nesciunt numquam magnam illo consequuntur voluptatum quo consequatur ratione reiciendis exercitationem tempora iusto assumenda mollitia dolore. Rerum ducimus quia similique aut perspiciatis.
           </Window>
           <!-- name card -->
