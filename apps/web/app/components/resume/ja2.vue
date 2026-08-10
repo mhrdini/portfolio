@@ -1,3 +1,105 @@
+<script setup lang="ts">
+import type { Education, Experience, KeyValueBlockQueryResult, ResumeQueryResult } from '.nuxt/types/sanity-typegen'
+import { resumeQuery } from '~/queries/resume'
+
+const { data: resume } = await useSanityQuery<ResumeQueryResult>(
+  resumeQuery,
+  {
+    language: 'ja',
+  },
+)
+
+// Personal Info section
+const personalInfo = computed(() => resume.value?.sections?.at(0)?.content as KeyValueBlockQueryResult[])
+
+function getDateParts(date: string) { // YYYY-MM-DD
+  const [year, month, day] = date.split('-').map(Number)
+  return { year, month, day }
+}
+
+function getAge(birthDate: string) { // YYYY-MM-DD
+  const [year, month, day] = birthDate.split('-').map(Number)
+
+  const today = new Date()
+
+  let age = today.getFullYear() - year!
+
+  const birthdayPassed
+    = today.getMonth() + 1 > month!
+      || (today.getMonth() + 1 === month && today.getDate() >= day!)
+
+  if (!birthdayPassed) {
+    age--
+  }
+
+  return age
+}
+
+const currentDate = computed(() =>
+  personalInfo.value.find(item => item.label === '現在年月日')?.value ?? '',
+)
+
+const nameFurigana = computed(() =>
+  personalInfo.value.find(item => item.label === '名前フリガナ')?.value ?? '',
+)
+
+const nameRomaji = computed(() =>
+  personalInfo.value.find(item => item.label === '名前ロマじ')?.value ?? '',
+)
+
+const birthday = computed(() =>
+  personalInfo.value.find(item => item.label === '誕生日')?.value ?? '',
+)
+
+const currentAddressFurigana = computed(() =>
+  personalInfo.value.find(item => item.label === '現住所フリガナ')?.value ?? '',
+)
+
+const currentAddress = computed(() =>
+  personalInfo.value.find(item => item.label === '現住所')?.value ?? '',
+)
+
+const phone = computed(() =>
+  personalInfo.value.find(item => item.label === '電話')?.value ?? '',
+)
+
+const email = computed(() =>
+  personalInfo.value.find(item => item.label === 'メール')?.value ?? '',
+)
+
+const photo = computed(() =>
+  personalInfo.value.find(item => item.label === '写真')?.value ?? '',
+)
+
+const currentDateParts = computed(() => {
+  return getDateParts(currentDate.value)
+})
+
+const birthdayParts = computed(() => {
+  return getDateParts(birthday.value)
+})
+
+const age = computed(() => {
+  if (!birthday.value)
+    return ''
+
+  return String(getAge(birthday.value))
+})
+
+// Experience & Education section
+const experience = computed(() => ((resume.value?.sections?.at(1)?.content as Experience[]).map((item) => {
+  const { year, month, day } = getDateParts(item.startDate!)
+  return { ...item, year, month, day }
+})))
+const education = computed(() => ((resume.value?.sections?.at(2)?.content as Education[]).map((item) => {
+  const { year, month, day } = getDateParts(item.startDate!)
+  return { ...item, year, month, day }
+})))
+
+// const motive = computed(() => resume.value?.sections?.at(3))
+// const request = computed(() => resume.value?.sections?.at(4))
+</script>
+
 <template>
   <div
     class="text-3xs md:text-xs font-ja-serif max-w-2xl flex flex-col gap-6 py-20 px-5 sm:px-0 flex-1
@@ -21,16 +123,25 @@
             </h4>
 
             <div
-              class="col-span-4 col-start-5 grid grid-cols-3
+              class="col-span-4 col-start-5 flex justify-end
             "
             >
-              <p class="resume-padding !justify-end">
+              <p class="resume-padding">
+                {{ currentDateParts.year }}
+              </p>
+              <p class="resume-padding">
                 年
               </p>
-              <p class="resume-padding !justify-end">
+              <p class="resume-padding">
+                {{ currentDateParts.month }}
+              </p>
+              <p class="resume-padding">
                 月
               </p>
-              <p class="resume-padding !justify-end">
+              <p class="resume-padding">
+                {{ currentDateParts.day }}
+              </p>
+              <p class="resume-padding">
                 日現在
               </p>
             </div>
@@ -49,6 +160,7 @@
 
             <div class="resume-padding !items-start col-span-7">
               <!-- answer -->
+              {{ nameFurigana }}
             </div>
           </article>
 
@@ -61,33 +173,38 @@
 
             <div class="resume-padding !items-start col-span-7 text-md">
               <!-- answer -->
+              {{ nameRomaji }}
             </div>
           </article>
 
           <!-- Row 4 -->
           <article class="border-l-2 col-span-8 grid grid-cols-8">
-            <div class="grid grid-cols-12 col-span-7 border-r-2">
-              <div class="resume-padding col-start-4 col-span-2 !justify-end">
+            <div class="grid grid-cols-12 col-span-7 border-r-2 *:flex *:not-last:justify-around">
+              <div class="resume-padding col-start-4 col-span-2">
                 <p>
                   <!-- answer -->
+                  {{ birthdayParts.year }}
                 </p>
                 <p>年</p>
               </div>
-              <div class="resume-padding col-span-2 !justify-end">
+              <div class="resume-padding col-span-2">
                 <p>
                   <!-- answer -->
+                  {{ birthdayParts.month }}
                 </p>
                 <p>月</p>
               </div>
-              <div class="resume-padding col-span-2 !justify-end">
+              <div class="resume-padding col-span-2">
                 <p>
                   <!-- answer -->
+                  {{ birthdayParts.day }}
                 </p>
                 <p>日生</p>
               </div>
               <div class="resume-padding col-span-3 !justify-around">
                 （満 <p>
                   <!-- answer -->
+                  {{ age }}
                 </p> 歳）
               </div>
             </div>
@@ -115,9 +232,16 @@
       "
         >
           <div
-            class="aspect-[3/4] w-28 border text-center text-[10px] p-2 flex
+            class="aspect-[3/4] w-28 relative border text-center text-[10px] p-2 flex
           flex-col gap-3 items-center justify-center"
           >
+            <NuxtImg
+              class="absolute inset-0 w-full h-full object-cover"
+              :src="photo"
+              width="800"
+              height="600"
+              format="webp"
+            />
             <div>
               写真を貼る位置
             </div>
@@ -158,6 +282,7 @@
             class="border-r resume-padding col-span-7"
           >
             <!-- answer -->
+            {{ currentAddressFurigana }}
           </div>
           <div
 
@@ -166,6 +291,7 @@
             <h4>電話</h4>
             <p>
               <!-- answer -->
+              {{ phone }}
             </p>
           </div>
         </div>
@@ -182,6 +308,7 @@
             </div>
             <div class="resume-padding grow !items-start">
               <!-- answer -->
+              {{ currentAddress }}
             </div>
           </div>
           <div class="col-span-2">
@@ -192,6 +319,7 @@
             </div>
             <p class="resume-padding !items-start">
               <!-- answer -->
+              {{ email }}
             </p>
           </div>
         </div>
@@ -277,15 +405,23 @@
           学歴・職歴（各別にまとめて書く）
         </h4>
       </article>
-      <article class="resume-parent-padding">
-        <p>ー</p>
-        <p>ー</p>
-        <p>ー</p>
+      <article
+        v-for="item in experience"
+        :key="item._id"
+        class="resume-parent-padding"
+      >
+        <p>{{ item.year }}</p>
+        <p>{{ item.month }}</p>
+        <p>{{ item.company }}・{{ item.position }}</p>
       </article>
-      <article class="resume-parent-padding">
-        <p>ー</p>
-        <p>ー</p>
-        <p>ー</p>
+      <article
+        v-for="item in education"
+        :key="item._id"
+        class="resume-parent-padding"
+      >
+        <p>{{ item.year }}</p>
+        <p>{{ item.month }}</p>
+        <p>{{ item.institution }}・{{ item.degree }}・{{ item.major }}</p>
       </article>
     </section>
     <section

@@ -1,5 +1,5 @@
+import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt',
     '@nuxtjs/sanity',
+    '@nuxt/image',
   ],
   css: [
     './app/assets/css/styles.css',
@@ -41,5 +42,18 @@ export default defineNuxtConfig({
       { name: 'Zen Kaku Gothic New', provider: 'google', weights: ['300', '400', '500', '700', '900'] },
       { name: 'Shippori Mincho B1', provider: 'google', weights: ['400'] },
     ],
+  },
+  sanity: {
+    projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NUXT_PUBLIC_SANITY_DATASET,
+    typegen: {
+      enabled: true,
+      schemaTypesPath: '../studio/schemaTypes',
+    },
+    visualEditing: {
+      studioUrl: process.env.NUXT_PUBLIC_SANITY_STUDIO_URL,
+      stega: true,
+      zIndex: 51,
+    },
   },
 })
