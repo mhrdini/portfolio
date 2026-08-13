@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <ResumeJa2 />
+  <ResumeEn />
 </template>

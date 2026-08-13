@@ -33,7 +33,8 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'localizedText',
+      type: 'array',
+      of: [ {type:'localizedText'} ]
     }),
   ],
 

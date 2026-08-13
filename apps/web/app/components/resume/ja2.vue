@@ -1,6 +1,19 @@
 <script setup lang="ts">
-import type { Education, Experience, KeyValueBlockQueryResult, ResumeQueryResult } from '.nuxt/types/sanity-typegen'
 import { resumeQuery } from '~/queries/resume'
+
+const LABELS = {
+  PERSONAL: {
+    CURRENT_DATE: '現在年月日',
+    NAME_FURIGANA: '名前フリガナ',
+    NAME_ROMAJI: '名前ロマじ',
+    BIRTHDAY: '誕生日',
+    CURRENT_ADDRESS_FURIGANA: '現住所フリガナ',
+    CURRENT_ADDRESS: '現住所',
+    PHONE: '電話',
+    EMAIL: 'メール',
+    PHOTO: '写真',
+  },
+}
 
 const { data: resume } = await useSanityQuery<ResumeQueryResult>(
   resumeQuery,
@@ -9,8 +22,10 @@ const { data: resume } = await useSanityQuery<ResumeQueryResult>(
   },
 )
 
+const sections = computed(() => resume.value?.sections)
+
 // Personal Info section
-const personalInfo = computed(() => resume.value?.sections?.at(0)?.content as KeyValueBlockQueryResult[])
+const personalInfo = computed(() => sections.value?.find(section => section.type === 'personal')?.content as KeyValueBlockQueryResult[])
 
 function getDateParts(date: string) { // YYYY-MM-DD
   const [year, month, day] = date.split('-').map(Number)
@@ -36,39 +51,39 @@ function getAge(birthDate: string) { // YYYY-MM-DD
 }
 
 const currentDate = computed(() =>
-  personalInfo.value.find(item => item.label === '現在年月日')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.CURRENT_DATE)?.value ?? '',
 )
 
 const nameFurigana = computed(() =>
-  personalInfo.value.find(item => item.label === '名前フリガナ')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.NAME_FURIGANA)?.value ?? '',
 )
 
 const nameRomaji = computed(() =>
-  personalInfo.value.find(item => item.label === '名前ロマじ')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.NAME_ROMAJI)?.value ?? '',
 )
 
 const birthday = computed(() =>
-  personalInfo.value.find(item => item.label === '誕生日')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.BIRTHDAY)?.value ?? '',
 )
 
 const currentAddressFurigana = computed(() =>
-  personalInfo.value.find(item => item.label === '現住所フリガナ')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.CURRENT_ADDRESS_FURIGANA)?.value ?? '',
 )
 
 const currentAddress = computed(() =>
-  personalInfo.value.find(item => item.label === '現住所')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.CURRENT_ADDRESS)?.value ?? '',
 )
 
 const phone = computed(() =>
-  personalInfo.value.find(item => item.label === '電話')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.PHONE)?.value ?? '',
 )
 
 const email = computed(() =>
-  personalInfo.value.find(item => item.label === 'メール')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.EMAIL)?.value ?? '',
 )
 
 const photo = computed(() =>
-  personalInfo.value.find(item => item.label === '写真')?.value ?? '',
+  personalInfo.value.find(item => item.label === LABELS.PERSONAL.PHOTO)?.value ?? '',
 )
 
 const currentDateParts = computed(() => {
@@ -87,17 +102,17 @@ const age = computed(() => {
 })
 
 // Experience & Education section
-const experience = computed(() => ((resume.value?.sections?.at(1)?.content as Experience[]).map((item) => {
+const experience = computed(() => ((sections.value?.find(section => section.type === 'experience')?.content as Experience[]).map((item) => {
   const { year, month, day } = getDateParts(item.startDate!)
   return { ...item, year, month, day }
 })))
-const education = computed(() => ((resume.value?.sections?.at(2)?.content as Education[]).map((item) => {
+const education = computed(() => ((sections.value?.find(section => section.type === 'education')?.content as Education[]).map((item) => {
   const { year, month, day } = getDateParts(item.startDate!)
   return { ...item, year, month, day }
 })))
 
-// const motive = computed(() => resume.value?.sections?.at(3))
-// const request = computed(() => resume.value?.sections?.at(4))
+// const motive = computed(() => sections.value?.at(3))
+// const request = computed(() => sections.value?.at(4))
 </script>
 
 <template>

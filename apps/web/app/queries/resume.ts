@@ -1,3 +1,5 @@
+// 3-layers max: section -> sub-section -> sub-sub-section
+
 export const resumeQuery = groq`
 *[
 _type == "resume" &&
@@ -39,7 +41,7 @@ language == $language
           linkEmail
         },
 
-        _type == "experience" => {
+       _type == "experience" => {
           _id,
           company,
 
@@ -51,10 +53,12 @@ language == $language
           startDate,
           endDate,
 
-          "description": select(
-            $language == "en" => description.en,
-            $language == "ja" => description.ja
-          )
+          "description": description[]{
+            "value": select(
+              $language == "en" => en,
+              $language == "ja" => ja
+            )
+          }.value
         },
 
         _type == "education" => {
@@ -74,10 +78,12 @@ language == $language
           startDate,
           endDate,
 
-          "description": select(
-            $language == "en" => description.en,
-            $language == "ja" => description.ja
-          )
+          "description": description[]{
+            "value": select(
+              $language == "en" => en,
+              $language == "ja" => ja
+            )
+          }.value
         },
 
         _type == "language" => {
@@ -119,10 +125,12 @@ language == $language
             startDate,
             endDate,
 
-            "description": select(
-              $language == "en" => description.en,
-              $language == "ja" => description.ja
-            )
+            "description": description[]{
+              "value": select(
+                $language == "en" => en,
+                $language == "ja" => ja
+              )
+            }.value
           },
 
           _type == "education" => {
@@ -142,10 +150,12 @@ language == $language
             startDate,
             endDate,
 
-            "description": select(
-              $language == "en" => description.en,
-              $language == "ja" => description.ja
-            )
+            "description": description[]{
+              "value": select(
+                $language == "en" => en,
+                $language == "ja" => ja
+              )
+            }.value
           },
 
           _type == "language" => {
@@ -154,6 +164,79 @@ language == $language
             originalName,
             code,
             proficiency
+          }
+        }
+      },
+
+      subsections[] {
+        title,
+        type,
+        containsSubsections,
+
+        content[] {
+          ...,
+
+          _type == "referenceBlock" => @-> {
+            _type,
+
+            _type == "social" => {
+              _id,
+              title,
+              linkEmail
+            },
+
+            _type == "experience" => {
+              _id,
+              company,
+
+              "position": select(
+                $language == "en" => position.en,
+                $language == "ja" => position.ja
+              ),
+
+              startDate,
+              endDate,
+
+              "description": description[]{
+                "value": select(
+                  $language == "en" => en,
+                  $language == "ja" => ja
+                )
+              }.value
+            },
+
+            _type == "education" => {
+              _id,
+              institution,
+
+              "degree": select(
+                $language == "en" => degree.en,
+                $language == "ja" => degree.ja
+              ),
+
+              "major": select(
+                $language == "en" => major.en,
+                $language == "ja" => major.ja
+              ),
+
+              startDate,
+              endDate,
+
+              "description": description[]{
+                "value": select(
+                  $language == "en" => en,
+                  $language == "ja" => ja
+                )
+              }.value
+            },
+
+            _type == "language" => {
+              _id,
+              englishName,
+              originalName,
+              code,
+              proficiency
+            }
           }
         }
       }
