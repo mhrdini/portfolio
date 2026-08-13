@@ -21,6 +21,7 @@
     "@sanity/client": "catalog:",
     "@tailwindcss/vite": "catalog:tailwindcss",
     "@vueuse/nuxt": "catalog:nuxt",
+    "date-fns": "catalog:",
     "lenis": "catalog:ui",
     "lucide-vue-next": "catalog:ui",
     "motion-v": "catalog:ui",
