@@ -13,6 +13,8 @@ const LABELS = {
     EMAIL: 'メール',
     PHOTO: '写真',
   },
+  MOTIVE: '志望の動機、自己PRなど',
+  REQUEST: '本人希望記入欄 　（特に給料、職種、勤務時間、勤務地、その他についての希望などがあれば記入）',
 }
 
 const { data: resume } = await useSanityQuery<ResumeQueryResult>(
@@ -103,16 +105,38 @@ const age = computed(() => {
 
 // Experience & Education section
 const experience = computed(() => ((sections.value?.find(section => section.type === 'experience')?.content as Experience[]).map((item) => {
-  const { year, month, day } = getDateParts(item.startDate!)
+  const { year, month, day } = getDateParts(item.startDate)
   return { ...item, year, month, day }
 })))
 const education = computed(() => ((sections.value?.find(section => section.type === 'education')?.content as Education[]).map((item) => {
-  const { year, month, day } = getDateParts(item.startDate!)
+  const { year, month, day } = getDateParts(item.startDate)
   return { ...item, year, month, day }
 })))
 
-// const motive = computed(() => sections.value?.at(3))
-// const request = computed(() => sections.value?.at(4))
+// Motive section
+const motive = computed(() => sections.value?.find(section => section.title === LABELS.MOTIVE)?.content as KeyValueBlockQueryResult[])
+
+// Request section
+const requests = computed(() => sections.value?.find(section => section.title === LABELS.REQUEST)?.content as KeyValueBlockQueryResult[] ?? [])
+
+const request = computed(() => requests.value.at(0) ?? null)
+
+const DEFAULT_REQUEST_LINES = 5
+const MAX_LENGTH = 80
+
+const requestStrings = computed(() => {
+  const value = String(request.value?.value ?? '')
+
+  if (!value) {
+    return Array.from({ length: DEFAULT_REQUEST_LINES }).fill('　') as string[]
+  }
+
+  const length = Math.min(
+    Math.round(value.length / DEFAULT_REQUEST_LINES),
+    MAX_LENGTH,
+  )
+  return value.match(new RegExp(`.{1,${length}}`, 'gs')) as string[] ?? Array.from({ length: DEFAULT_REQUEST_LINES }).fill('　') as string[]
+})
 </script>
 
 <template>
@@ -481,31 +505,31 @@ const education = computed(() => ((sections.value?.find(section => section.type 
     </section>
     <section class="flex flex-col">
       <h4 class="resume-padding">
-        志望の動機、自己PRなど
+        {{ LABELS.MOTIVE }}
       </h4>
-      <div class="resume-padding min-h-38">
-        <!-- answer -->
+      <div class="resume-padding min-h-38 flex flex-col">
+        <p
+          v-for="item in motive"
+          :key="item._key"
+          class="mb-auto"
+        >
+          {{ item.value }}
+        </p>
       </div>
     </section>
-    <section class="grid grid-rows-6 *:first:border-b-2 *:not-first:not-last:border-b *:not-first:not-last:border-dashed">
+    <section class="grid grid-rows-[{{ 1 + requestStrings.length }}] *:first:border-b-2 *:not-first:*:not-last:border-b *:not-first:*:not-last:border-dashed">
       <h4 class="resume-padding">
-        本人希望記入欄 　（特に給料、職種、勤務時間、勤務地、その他についての希望などがあれば記入）
+        {{ LABELS.REQUEST }}
       </h4>
-      <article class="resume-padding">
-        <!-- line -->
-      </article>
-      <article class="resume-padding">
-        <!-- line -->
-      </article>
-      <article class="resume-padding">
-        <!-- line -->
-      </article>
-      <article class="resume-padding">
-        <!-- line -->
-      </article>
-      <article class="resume-padding">
-        <!-- line -->
-      </article>
+      <div class="grid grid-rows-[{{ requestStrings.length }}]">
+        <article
+          v-for="line in requestStrings"
+          :key="line"
+          class="resume-padding"
+        >
+          {{ line }}
+        </article>
+      </div>
     </section>
   </div>
 </template>
