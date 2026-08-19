@@ -19,6 +19,7 @@ export default defineType({
       name: 'startDate',
       title: 'Start Date',
       type: 'date',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'endDate',
@@ -29,7 +30,7 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'array',
-      of: [ {type:'localizedText'} ]
+      of: [{ type: 'localizedText' }],
     }),
   ],
   preview: {
