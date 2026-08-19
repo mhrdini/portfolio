@@ -125,20 +125,21 @@ const education = computed(() => ((sections.value?.find(section => section.type 
       <div
         class="
         grid
-        grid-cols-10
+        grid-cols-12
+        sm:grid-cols-10
         grid-rows-[auto_2rem_4rem_2rem]
       "
       >
         <!-- Left side -->
-        <div class=" col-span-8 contents">
+        <div class="col-span-9 sm:col-span-8 contents">
           <!-- Row 1 -->
-          <div class="col-span-8 grid grid-cols-8 items-end pb-2">
-            <h4 class="col-span-4 text-3xl pb-1.5">
+          <div class="col-span-9 sm:col-span-8 grid grid-cols-8 items-end pb-2">
+            <h4 class="col-span-3 sm:col-span-4 text-3xl pb-1.5">
               履歴書
             </h4>
 
             <div
-              class="col-span-4 col-start-5 flex justify-end
+              class="col-span-5 sm:col-span-4 col-start-4 sm:col-start-5 flex justify-end
             "
             >
               <p class="resume-padding">
@@ -167,21 +168,25 @@ const education = computed(() => ((sections.value?.find(section => section.type 
             :style="{
               borderBottomStyle: 'dotted',
             }"
-            class="border-l-2 border-t-2 border-r-2 border-b col-span-8 grid grid-cols-8"
+            class="border-t-2 border-l-2 border-r-2 border-b col-span-9
+          sm:col-span-8 grid grid-cols-9 sm:grid-cols-8"
           >
-            <h4 class="resume-padding">
+            <h4 class="resume-padding col-span-2 sm:col-span-1">
               フリガナ
             </h4>
 
-            <div class="resume-padding !items-start col-span-7">
+            <div class="resume-padding col-span-7">
               <!-- answer -->
               {{ nameFurigana }}
             </div>
           </article>
 
           <!-- Row 3 -->
-          <article class="border-x-2 border-b-2 col-span-8 grid grid-cols-8">
-            <h4 class="col-span-1 resume-padding !items-start !justify-between">
+          <article
+            class="border-x-2 border-b-2 col-span-9 sm:col-span-8 grid
+          grid-cols-9 sm:grid-cols-8"
+          >
+            <h4 class="col-span-2 sm:col-span-1 resume-padding !items-start !justify-between">
               <span>氏</span>
               <span>名</span>
             </h4>
@@ -193,9 +198,9 @@ const education = computed(() => ((sections.value?.find(section => section.type 
           </article>
 
           <!-- Row 4 -->
-          <article class="border-l-2 col-span-8 grid grid-cols-8">
-            <div class="grid grid-cols-12 col-span-7 border-r-2 *:flex *:not-last:justify-around">
-              <div class="resume-padding col-start-4 col-span-2">
+          <article class="border-l-2 col-span-9 sm:col-span-8 grid grid-cols-9 sm:grid-cols-8">
+            <div class="grid grid-cols-9 sm:grid-cols-12 col-span-7 border-r-2 *:flex *:not-last:justify-around">
+              <div class="resume-padding sm:col-start-4 col-span-2">
                 <p>
                   <!-- answer -->
                   {{ birthdayParts.year }}
@@ -224,7 +229,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
               </div>
             </div>
             <div
-              class="border-r-2 col-span-1
+              class="border-r-2 col-span-2 sm:col-span-1
           resume-padding !justify-around"
             >
               <p>男</p>
@@ -237,8 +242,10 @@ const education = computed(() => ((sections.value?.find(section => section.type 
         <!-- Picture -->
         <aside
           class="
-        col-start-9
-        col-span-2
+        col-start-10
+        col-span-3
+        sm:col-start-9
+        sm:col-span-2
         row-start-1
         row-end-6
         flex
@@ -247,7 +254,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
       "
         >
           <div
-            class="aspect-[3/4] w-28 relative border text-center text-[10px] p-2 flex
+            class="aspect-[3/4] w-20 sm:w-28 relative border text-center text-[10px] p-2 flex
           flex-col gap-3 items-center justify-center"
           >
             <NuxtImg
@@ -279,17 +286,18 @@ const education = computed(() => ((sections.value?.find(section => section.type 
         class="
         border-x-2 border-b-2
         grid
-        grid-cols-10 grid-rows-[2rem_2rem_2rem_2rem_4rem]"
+        grid-cols-12
+        sm:grid-cols-10 grid-rows-[2rem_2rem_2rem_2rem_4rem]"
       >
         <!-- Row 1 -->
         <div
           :style="{
             borderBottomStyle: 'dotted',
           }"
-          class="border-t-2 border-b row-span-1 col-span-10 grid grid-cols-10"
+          class="border-t-2 border-b row-span-1 col-span-12 sm:col-span-10 grid grid-cols-12 sm:grid-cols-10"
         >
           <h4
-            class="resume-padding"
+            class="resume-padding col-span-2 sm:col-span-1"
           >
             フリガナ
           </h4>
@@ -301,7 +309,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
           </div>
           <div
 
-            class="resume-padding col-span-2 flex gap-1"
+            class="resume-padding col-span-3 sm:col-span-2 flex gap-1"
           >
             <h4>電話</h4>
             <p>
@@ -311,8 +319,11 @@ const education = computed(() => ((sections.value?.find(section => section.type 
           </div>
         </div>
         <!-- Row 2 + 3 -->
-        <div class="border-b-2 row-span-2 col-span-10 grid grid-cols-10">
-          <h4 class="col-span-1 resume-padding !items-start !justify-around">
+        <div
+          class="border-b-2 row-span-2 col-span-12 sm:col-span-10 grid
+        grid-cols-12 sm:grid-cols-10"
+        >
+          <h4 class="col-span-2 sm:col-span-1 resume-padding !items-start !justify-around">
             <p>現</p>
             <p>住</p>
             <p>所</p>
@@ -326,7 +337,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
               {{ currentAddress }}
             </div>
           </div>
-          <div class="col-span-2">
+          <div class="col-span-3 sm:col-span-2">
             <div
               class="resume-padding"
             >
@@ -344,15 +355,15 @@ const education = computed(() => ((sections.value?.find(section => section.type 
           :style="{
             borderBottomStyle: 'dotted',
           }"
-          class="border-b col-span-10 grid grid-cols-10"
+          class="border-b col-span-12 sm:col-span-10 grid grid-cols-12 sm:grid-cols-10"
         >
-          <h4 class="resume-padding col-span-1">
+          <h4 class="resume-padding col-span-2 sm:col-span-1">
             フリガナ
           </h4>
           <div class="border-r resume-padding col-span-7">
             <!-- answer -->
           </div>
-          <div class="resume-padding col-span-2 flex gap-1">
+          <div class="resume-padding col-span-3 sm:col-span-2 flex gap-1">
             <h4>電話</h4>
             <p>
               <!-- answer -->
@@ -360,12 +371,12 @@ const education = computed(() => ((sections.value?.find(section => section.type 
           </div>
         </div>
         <!-- Row 6 (4rem) -->
-        <div class="col-span-10 grid grid-cols-10">
-          <h4 class="resume-padding col-span-1 !items-start !justify-around">
+        <div class="col-span-12 sm:col-span-10 grid grid-cols-12 sm:grid-cols-10">
+          <h4 class="resume-padding col-span-2 sm:col-span-1 !items-start !justify-around">
             連 絡 先
           </h4>
-          <div class="col-span-7 grid grid-cols-2">
-            <div class="flex *:h-full">
+          <div class="col-span-7 grid grid-cols-5 sm:grid-cols-2">
+            <div class="col-span-2 sm:col-span-1 flex *:h-full">
               <p class="resume-padding !items-start">
                 〒
               </p>
@@ -373,7 +384,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
                 <!-- answer -->
               </p>
             </div>
-            <div class="border-r flex flex-col">
+            <div class="col-span-3 sm:col-span-1 border-r flex flex-col">
               <div class="md:text-3xs resume-padding !justify-end">
                 （現住所以外に連絡を希望する場合のみ記入）
               </div>
@@ -387,7 +398,7 @@ const education = computed(() => ((sections.value?.find(section => section.type 
               </div>
             </div>
           </div>
-          <div class="col-span-2">
+          <div class="col-span-3 sm:col-span-2">
             <div
               class="resume-padding"
             >
