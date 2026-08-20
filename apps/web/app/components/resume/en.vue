@@ -121,7 +121,7 @@ const languages = computed(() => toolsTechnologies.value.find(section => section
 
 <template>
   <div
-    class="max-w-xl px-8 py-20 sm:px-0 flex-1 mx-auto items-start leading-snug **:whitespace-pre-line grid
+    class="max-w-xl px-8 pt-20 pb-28 sm:px-0 flex-1 mx-auto items-start leading-snug **:whitespace-pre-line grid
   grid-cols-[max-content_1fr] gap-x-4
   gap-y-8
   *:odd:font-medium

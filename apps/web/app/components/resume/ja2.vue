@@ -141,7 +141,8 @@ const requestStrings = computed(() => {
 
 <template>
   <div
-    class="text-3xs md:text-xs font-ja-serif max-w-2xl flex flex-col gap-6 py-20 px-5 sm:px-0 flex-1
+    class="text-3xs md:text-xs font-ja-serif max-w-2xl flex flex-col gap-6 pt-20
+ pb-28 px-5 sm:px-0 flex-1
     mx-auto **:place-self-auto *:not-first:border-2"
   >
     <section>

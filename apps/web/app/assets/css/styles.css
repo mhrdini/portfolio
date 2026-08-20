@@ -68,4 +68,8 @@ body {
   .resume-parent-padding {
     @apply *:flex *:px-2 *:py-1.5 *:items-center;
   }
+
+  .button {
+    @apply px-5 py-3 rounded-full bg-neutral-50 text-neutral-600 font-medium;
+  }
 }
