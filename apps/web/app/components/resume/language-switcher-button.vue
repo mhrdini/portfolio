@@ -42,7 +42,11 @@ const underlineVariants: MotionProps['variants'] = {
 </script>
 
 <template>
-  <button class="relative button overflow-clip flex justify-items items-between gap-2" @click="toggle">
+  <button
+    class="relative button overflow-clip flex justify-items items-between
+  gap-2 shadow hover:"
+    @click="toggle"
+  >
     <Motion
       as="div"
       :initial="current === 'en' ? 'on' : 'off'"
