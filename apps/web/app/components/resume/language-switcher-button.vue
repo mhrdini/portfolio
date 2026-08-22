@@ -6,7 +6,7 @@ const i18n = useI18nStore()
 const { current } = storeToRefs(i18n)
 const { toggle } = i18n
 
-const textVariants: MotionProps['variants'] = {
+const text: MotionProps['variants'] = {
   on: {
     opacity: 1,
     transition: {
@@ -21,7 +21,7 @@ const textVariants: MotionProps['variants'] = {
   },
 }
 
-const underlineVariants: MotionProps['variants'] = {
+const underline: MotionProps['variants'] = {
   en: {
     x: 0,
     transition: {
@@ -43,29 +43,29 @@ const underlineVariants: MotionProps['variants'] = {
 
 <template>
   <button
-    class="relative button overflow-clip flex justify-items items-between
-  gap-2 shadow hover:"
+    class="relative button overflow-clip
+  gap-2 button button-shadow items-between"
     @click="toggle"
   >
     <Motion
       as="div"
       :initial="current === 'en' ? 'on' : 'off'"
       :animate="current === 'en' ? 'on' : 'off'"
-      :variants="textVariants"
+      :variants="text"
     >
       EN
     </Motion>
     <Motion
       as="div"
-      class="w-[21px] h-0.5 absolute bottom-1/4 bg-neutral-600"
+      class="w-[21px] h-0.5 absolute flex-none bottom-1/4 bg-neutral-600"
       :animate="current"
-      :variants="underlineVariants"
+      :variants="underline"
     />
     <Motion
       as="div"
       :initial="current === 'ja' ? 'on' : 'off'"
       :animate="current === 'ja' ? 'on' : 'off'"
-      :variants="textVariants"
+      :variants="text"
     >
       JP
     </Motion>
