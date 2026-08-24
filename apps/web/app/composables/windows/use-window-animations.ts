@@ -25,7 +25,7 @@ export function useWindowAnimations(
         opacity: 1,
       }, {
         duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
         delay: 1.7,
       })
     }
@@ -115,7 +115,7 @@ export function useWindowAnimations(
       },
       {
         duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
       },
     )
 
@@ -148,7 +148,7 @@ export function useWindowAnimations(
       },
       {
         duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
       },
     )
 

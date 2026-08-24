@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { MotionProps } from 'motion-v'
-import { Motion } from 'motion-v'
+import { motion } from 'motion-v'
 
 const i18n = useI18nStore()
 const { current } = storeToRefs(i18n)
@@ -10,13 +10,13 @@ const text: MotionProps['variants'] = {
   on: {
     opacity: 1,
     transition: {
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
     },
   },
   off: {
     opacity: 0.3,
     transition: {
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
     },
   },
 }
@@ -26,7 +26,7 @@ const underline: MotionProps['variants'] = {
     x: 0,
     transition: {
       x: {
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
       },
     },
   },
@@ -34,7 +34,7 @@ const underline: MotionProps['variants'] = {
     x: 29,
     transition: {
       x: {
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
       },
     },
   },
@@ -43,31 +43,28 @@ const underline: MotionProps['variants'] = {
 
 <template>
   <button
-    class="relative button overflow-clip
-  gap-2 button button-shadow items-between"
+    class="relative overflow-clip
+  gap-2 flex-button button-shadow items-between"
     @click="toggle"
   >
-    <Motion
-      as="div"
+    <motion.div
       :initial="current === 'en' ? 'on' : 'off'"
       :animate="current === 'en' ? 'on' : 'off'"
       :variants="text"
     >
       EN
-    </Motion>
-    <Motion
-      as="div"
+    </motion.div>
+    <motion.div
       class="w-[21px] h-0.5 absolute flex-none bottom-1/4 bg-neutral-600"
       :animate="current"
       :variants="underline"
     />
-    <Motion
-      as="div"
+    <motion.div
       :initial="current === 'ja' ? 'on' : 'off'"
       :animate="current === 'ja' ? 'on' : 'off'"
       :variants="text"
     >
       JP
-    </Motion>
+    </motion.div>
   </button>
 </template>

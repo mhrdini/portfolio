@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import type { MotionProps } from 'motion-v'
 import { differenceInMonths, format } from 'date-fns'
+import { motion } from 'motion-v'
 import { resumeQuery } from '~/queries/resume'
 
 const LABELS = {
@@ -117,122 +119,230 @@ const spokenLanguages = computed(() => skills.value?.find(section => section.tit
 const toolsTechnologies = computed(() => skills.value?.find(section => section.title === LABELS.SKILLS.TOOLS_TECHNOLOGIES)?.subsections as ResumeSection[])
 const librariesFrameworks = computed(() => toolsTechnologies.value.find(section => section.title === LABELS.SKILLS.LIBRARIES_FRAMEWORKS)?.content as KeyValueBlockQueryResult[])
 const languages = computed(() => toolsTechnologies.value.find(section => section.title === LABELS.SKILLS.LANGUAGES)?.content as KeyValueBlockQueryResult[])
+
+// Motion
+const effect: MotionProps['variants'] = wipe
 </script>
 
 <template>
-  <div
-    class="max-w-xl px-8 pt-20 pb-28 sm:px-0 flex-1 mx-auto items-start leading-snug **:whitespace-pre-line grid
-  grid-cols-[max-content_1fr] gap-x-4
-  gap-y-8
-  *:odd:font-medium
-  *:odd:text-lg *:odd:text-right *:even:text-xs"
-  >
-    <h1>{{ contact.name }}</h1>
-    <section class="pt-1.5">
-      {{ contact.website }}<br>
-      {{ contact.email }}<br>
-      {{ contact.github }}<br>
-      {{ contact.linkedIn }}
-    </section>
-    <h2>
-      Experience
-    </h2>
-    <section
-      class="resume-section"
+  <AnimatePresence>
+    <motion.div
+      class="max-w-xl px-8 pt-20 pb-28 sm:px-0 flex-1 mx-auto items-start leading-snug **:whitespace-pre-line grid
+    grid-cols-[max-content_1fr] gap-x-4
+    gap-y-8
+    *:odd:font-medium
+    *:odd:text-lg *:odd:text-right *:even:text-xs"
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
     >
-      <article v-for="item in experience" :key="item._id">
-        <h3>
-          <div>
-            {{ item.company }}
-          </div>
-          <div>
-            {{ item.position }}
-          </div>
-        </h3>
-        <div>
-          <p v-for="text in item.description" :key="text._key">
-            {{ text }}
-          </p>
-          <p>
-            {{ formatExperienceDuration(item) }}
-          </p>
-        </div>
-      </article>
-    </section>
-    <h3>
-      Education
-    </h3>
-    <section class="resume-section *:*:last:*:first:font-medium">
-      <article v-for="item in education" :key="item._id">
-        <h4>
-          <div>
-            {{ item.degree }}
-          </div>
-          <div>
-            {{ item.major }}
-          </div>
-        </h4>
-        <div>
-          <h5>
-            {{ item.institution }}
-          </h5>
-          <p v-for="text in item.description" :key="text._key">
-            {{ text }}
-          </p>
-          <p>
-            {{ formatExperienceDuration(item, false) }}
-          </p>
-        </div>
-      </article>
-    </section>
-    <h3>
-      Skills
-    </h3>
-    <section class="flex flex-1 gap-4">
-      <article
-        class="flex flex-col gap-1 *:odd:font-medium *:odd:text-lg
-      *:odd:text-neutral-400 *:even:flex *:even:flex-col *:odd:not-first-of-type:pt-4"
+      <motion.h1
+        :variants="effect"
+        :custom="0"
       >
-        <h4>
-          Focus areas
-        </h4>
-        <div>
-          <p v-for="item in focusAreas" :key="item._key">
-            {{ item.label }}
-          </p>
-        </div>
-        <h4>
-          Spoken languages
-        </h4>
-        <div>
-          <span v-for="item in spokenLanguages" :key="item._id">
-            {{ item.englishName }} <span class="text-neutral-400 capitalize">({{ item.proficiency }})</span>
-          </span>
-        </div>
-      </article>
-      <article class="flex flex-col gap-1">
-        <h4 class="resume-section-title text-neutral-400">
-          Tools + technologies
-        </h4>
-        <div class="flex flex-col *:odd:text-neutral-400 *:odd:not-first-of-type:pt-2">
-          <h5>
-            Libraries + frameworks
-          </h5>
+        {{ contact.name }}
+      </motion.h1>
+      <section
+        class="pt-1.5"
+      >
+        <motion.p
+          :variants="effect"
+          :custom="0"
+        >
+          {{ contact.website }}
+        </motion.p>
+        <motion.p
+          :variants="effect"
+          :custom="0"
+        >
+          {{ contact.email }}
+        </motion.p>
+        <motion.p
+          :variants="effect"
+          :custom="0"
+        >
+          {{ contact.github }}
+        </motion.p>
+        <motion.p
+          :variants="effect"
+          :custom="0"
+        >
+          {{ contact.linkedIn }}
+        </motion.p>
+      </section>
+      <motion.h2
+        :variants="effect"
+        :custom="1"
+      >
+        Experience
+      </motion.h2>
+      <section
+        class="resume-section"
+      >
+        <article
+          v-for="(item) in experience"
+          :key="item._id"
+        >
+          <motion.h3
+            :variants="effect"
+            :custom="1"
+          >
+            <div>
+              {{ item.company }}
+            </div>
+            <div>
+              {{ item.position }}
+            </div>
+          </motion.h3>
           <div>
-            <p v-for="item in librariesFrameworks" :key="item._key">
-              {{ item.label }}
-            </p>
+            <motion.p
+              v-for="text in item.description"
+              :key="text._key"
+              :variants="effect"
+              :custom="1"
+            >
+              {{ text }}
+            </motion.p>
+            <motion.p
+              :variants="effect"
+              :custom="1"
+            >
+              {{ formatExperienceDuration(item) }}
+            </motion.p>
           </div>
-          <h5>
-            Languages
-          </h5>
+        </article>
+      </section>
+      <motion.h3
+        :variants="effect"
+        :custom="2"
+      >
+        Education
+      </motion.h3>
+      <section class="resume-section *:*:last:*:first:font-medium">
+        <article v-for="item in education" :key="item._id">
+          <motion.h4
+            :variants="effect"
+            :custom="2"
+          >
+            <div>
+              {{ item.degree }}
+            </div>
+            <div>
+              {{ item.major }}
+            </div>
+          </motion.h4>
           <div>
-            <p v-for="item in languages" :key="item._key">
-              {{ item.label }}
-            </p>
+            <motion.h5
+              :variants="effect"
+              :custom="2"
+            >
+              {{ item.institution }}
+            </motion.h5>
+            <motion.p
+              v-for="text in item.description"
+              :key="text._key"
+              :variants="effect"
+              :custom="2"
+            >
+              {{ text }}
+            </motion.p>
+            <motion.p
+              :variants="effect"
+              :custom="2"
+            >
+              {{ formatExperienceDuration(item, false) }}
+            </motion.p>
           </div>
-        </div>
-      </article>
-    </section>
-  </div>
+        </article>
+      </section>
+      <motion.h3
+        :variants="effect"
+        :custom="3"
+      >
+        Skills
+      </motion.h3>
+      <section class="flex flex-1 gap-4">
+        <article
+          class="flex flex-col gap-1 *:odd:font-medium *:odd:text-lg
+        *:odd:text-neutral-400 *:even:flex *:even:flex-col *:odd:not-first-of-type:pt-4"
+        >
+          <motion.h4
+            :variants="effect"
+            :custom="3"
+          >
+            Focus areas
+          </motion.h4>
+          <div>
+            <motion.p
+              v-for="item in focusAreas"
+              :key="item._key"
+              :variants="effect"
+              :custom="3"
+            >
+              {{ item.label }}
+            </motion.p>
+          </div>
+          <motion.h4
+            :variants="effect"
+            :custom="3"
+          >
+            Spoken languages
+          </motion.h4>
+          <div>
+            <motion.span
+              v-for="item in spokenLanguages"
+              :key="item._id"
+              :variants="effect"
+              :custom="3"
+            >
+              {{ item.englishName }} <span class="text-neutral-400 capitalize">({{ item.proficiency }})</span>
+            </motion.span>
+          </div>
+        </article>
+        <article class="flex flex-col gap-1">
+          <motion.h4
+            :variants="effect"
+            :custom="3"
+            class="resume-section-title text-neutral-400"
+          >
+            Tools + technologies
+          </motion.h4>
+          <div class="flex flex-col *:odd:text-neutral-400 *:odd:not-first-of-type:pt-2">
+            <motion.h5
+              :variants="effect"
+              :custom="3"
+            >
+              Libraries + frameworks
+            </motion.h5>
+            <div>
+              <motion.p
+                v-for="item in librariesFrameworks"
+                :key="item._key"
+                :variants="effect"
+                :custom="3"
+              >
+                {{ item.label }}
+              </motion.p>
+            </div>
+            <motion.h5
+              :variants="effect"
+              :custom="3"
+            >
+              Languages
+            </motion.h5>
+            <div>
+              <motion.p
+                v-for="item in languages"
+                :key="item._key"
+                :variants="effect"
+                :custom="3"
+              >
+                {{ item.label }}
+              </motion.p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </motion.div>
+  </AnimatePresence>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Motion } from 'motion-v'
+import { motion } from 'motion-v'
 
 const containerRef = ref<HTMLElement | null>(null)
 provide('containerRef', containerRef)
@@ -9,9 +9,7 @@ provide('containerRef', containerRef)
   <div
     class="p-2 max-h-screen w-full"
   >
-    <Motion
-
-      as="div"
+    <motion.div
       class="size-full flex flex-col border-1 border-black"
       :initial="{
         scale: 0,
@@ -21,13 +19,12 @@ provide('containerRef', containerRef)
       }"
       :transition="{
         duration: 1.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: BEZIER_EASE,
         delay: 0.4,
       }"
     >
       <!-- workspace -->
-      <Motion
-        as="div"
+      <motion.div
         class="flex-1"
         :initial="{
           opacity: 0,
@@ -37,7 +34,7 @@ provide('containerRef', containerRef)
         }"
         :transition="{
           duration: 0.6,
-          ease: [0.22, 1, 0.36, 1],
+          ease: BEZIER_EASE,
           delay: 1.4,
         }"
       >
@@ -356,8 +353,7 @@ provide('containerRef', containerRef)
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, rerum est amet sint error dicta veniam? Neque pariatur facere quae, consequuntur soluta vel eum. Sunt voluptas incidunt in iusto minus optio eligendi, nostrum facere quia, delectus explicabo ratione eos accusantium quod? Pariatur suscipit debitis voluptates recusandae. Numquam maiores cupiditate dolorum reprehenderit nisi, est ullam, eos labore optio quae molestias. Pariatur quasi culpa, quaerat cum officia blanditiis distinctio dolorum dicta officiis cupiditate molestias veritatis vitae ab! Enim quaerat, voluptatem nesciunt numquam magnam illo consequuntur voluptatum quo consequatur ratione reiciendis exercitationem tempora iusto assumenda mollitia dolore. Rerum ducimus quia similique aut perspiciatis.
           </Window>
           <!-- name card -->
-          <Motion
-            as="header"
+          <motion.header
             class="bg-white relative z-10 cursor-default w-min top-0  px-9 py-7
           ft-0"
             :initial="{
@@ -369,12 +365,11 @@ provide('containerRef', containerRef)
             :transition="
               {
                 duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
+                ease: BEZIER_EASE,
                 delay: 1.4,
               }"
           >
-            <Motion
-              as="a"
+            <motion.a
               class="relative leading-none inline-block text-black whitespace-nowrap"
               while-hover="hover"
               while-press="hover"
@@ -387,7 +382,7 @@ provide('containerRef', containerRef)
               :transition="
                 {
                   duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: BEZIER_EASE,
                   delay: 1.4,
                 }"
             >
@@ -398,8 +393,7 @@ provide('containerRef', containerRef)
                 viewBox="0 0 120 10"
                 preserveAspectRatio="none"
               >
-                <Motion
-                  as="path"
+                <motion.path
                   stroke="currentColor"
                   fill="transparent"
                   stroke-width="1"
@@ -439,14 +433,13 @@ provide('containerRef', containerRef)
                   }"
                   :transition="{
                     duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: BEZIER_EASE,
                   }"
                 />
               </svg>
-            </Motion>
+            </motion.a>
             <!-- bottom horizontal -->
-            <Motion
-              as="div"
+            <motion.div
               class="absolute bottom-0 left-0 h-px w-full bg-black origin-left"
               :initial="{
                 scaleX: 0,
@@ -458,14 +451,13 @@ provide('containerRef', containerRef)
               }"
               :transition="{
                 duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
+                ease: BEZIER_EASE,
                 delay: 1.4,
               }"
             />
 
             <!-- right vertical -->
-            <Motion
-              as="div"
+            <motion.div
               class="absolute top-0 right-0 w-px h-full bg-black origin-top"
               :initial="{
                 scaleY: 0,
@@ -477,13 +469,13 @@ provide('containerRef', containerRef)
               }"
               :transition="{
                 duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
+                ease: BEZIER_EASE,
                 delay: 1.4,
               }"
             />
-          </Motion>
+          </motion.header>
         </div>
-      </Motion>
-    </Motion>
+      </motion.div>
+    </motion.div>
   </div>
 </template>
