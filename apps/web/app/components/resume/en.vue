@@ -121,7 +121,7 @@ const librariesFrameworks = computed(() => toolsTechnologies.value.find(section 
 const languages = computed(() => toolsTechnologies.value.find(section => section.title === LABELS.SKILLS.LANGUAGES)?.content as KeyValueBlockQueryResult[])
 
 // Motion
-const effect: MotionProps['variants'] = wipe
+const effect: MotionProps['variants'] = yReveal
 </script>
 
 <template>
