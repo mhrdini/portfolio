@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MotionProps } from 'motion-v'
+import { motion } from 'motion-v'
 
 const i18n = useI18nStore()
 
@@ -18,7 +19,7 @@ const text: MotionProps['variants'] = {
     opacity: 1,
     transition: {
       duration: 0.2,
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
     },
   },
 
@@ -27,24 +28,24 @@ const text: MotionProps['variants'] = {
     opacity: 0,
     transition: {
       duration: 0.2,
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
     },
   },
 }
 
 const icon: MotionProps['variants'] = {
   hidden: {
+    marginLeft: 0,
     width: 0,
     opacity: 0,
-    display: 'none',
   },
 
   visible: {
+    marginLeft: 8,
     width: 18,
     opacity: 1,
-    display: 'flex',
     transition: {
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
     },
   },
 }
@@ -62,7 +63,7 @@ const draw: MotionProps['variants'] = {
       pathLength: {
         delay: 0.1,
         type: 'spring',
-        duration: 1,
+        duration: 0.5,
         bounce: 0,
       },
     },
@@ -78,42 +79,38 @@ const shape = {
 </script>
 
 <template>
-  <Motion
-    as="button"
+  <motion.button
     layout
-    class="relative button items-center justify-center button-shadow"
+    class="relative flex-button !gap-0 items-center justify-center button-shadow"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
     <AnimatePresence mode="popLayout">
-      <Motion
+      <motion.span
         v-if="current === 'en'"
         key="en"
-        as="span"
         layout
-        initial="beforeEnter"
+        :initial="current === 'en' ? 'enter' : 'beforeEnter'"
         animate="enter"
         exit="exit"
         :variants="text"
       >
         Download
-      </Motion>
+      </motion.span>
 
-      <Motion
+      <motion.span
         v-else
         key="ja"
-        as="span"
         layout
-        initial="beforeEnter"
+        :initial="current === 'ja' ? 'enter' : 'beforeEnter'"
         animate="enter"
         exit="exit"
         :variants="text"
       >
         ダウンロード
-      </Motion>
+      </motion.span>
     </AnimatePresence>
-    <Motion
-      as="svg"
+    <motion.svg
       viewBox="0 0 18 18"
       class="ml-auto h-[18px] shrink-0"
       initial="hidden"
@@ -121,8 +118,7 @@ const shape = {
       :variants="icon"
     >
       <!-- Vertical -->
-      <Motion
-        as="line"
+      <motion.line
         x1="9"
         y1="0.75"
         x2="9"
@@ -132,8 +128,7 @@ const shape = {
       />
 
       <!-- Arrow head: left -->
-      <Motion
-        as="line"
+      <motion.line
         x1="2.769"
         y1="9.698"
         x2="9"
@@ -143,8 +138,7 @@ const shape = {
       />
 
       <!-- Arrow head: right -->
-      <Motion
-        as="line"
+      <motion.line
         x1="15.231"
         y1="9.698"
         x2="9"
@@ -154,8 +148,7 @@ const shape = {
       />
 
       <!-- Bottom -->
-      <Motion
-        as="line"
+      <motion.line
         x1="0.75"
         y1="17.25"
         x2="17.25"
@@ -163,6 +156,6 @@ const shape = {
         :style="shape"
         :variants="draw"
       />
-    </Motion>
-  </Motion>
+    </motion.svg>
+  </motion.button>
 </template>

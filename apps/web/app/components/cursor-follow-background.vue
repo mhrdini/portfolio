@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMotionValue, useSpring } from 'motion-v'
+import { motion, useMotionValue, useSpring } from 'motion-v'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const canvasRef = ref<HTMLCanvasElement>()
@@ -170,8 +170,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Motion
-    as="div"
+  <motion.div
     class="absolute size-full"
     :initial="{
       opacity: 0,
@@ -183,7 +182,7 @@ onUnmounted(() => {
     }"
     :transition="{
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: BEZIER_EASE,
       delay: 1.9,
     }"
   >
@@ -191,5 +190,5 @@ onUnmounted(() => {
       ref="canvasRef"
       class="absolute inset-0 size-full"
     />
-  </Motion>
+  </motion.div>
 </template>
