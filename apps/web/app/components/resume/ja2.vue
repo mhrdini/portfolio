@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MotionProps } from 'motion-v'
+import { motion } from 'motion-v'
 import { resumeQuery } from '~/queries/resume'
 
 const LABELS = {
@@ -137,15 +139,24 @@ const requestStrings = computed(() => {
   )
   return value.match(new RegExp(`.{1,${length}}`, 'gs')) as string[] ?? Array.from({ length: DEFAULT_REQUEST_LINES }).fill('　') as string[]
 })
+
+// Motion
+const effect: MotionProps['variants'] = opacityReveal
 </script>
 
 <template>
-  <div
+  <motion.div
     class="text-3xs md:text-xs font-ja-serif max-w-2xl flex flex-col gap-6 pt-20
  pb-28 px-5 sm:px-0 flex-1
     mx-auto **:place-self-auto *:not-first:border-2"
+    initial="hidden"
+    animate="visible"
+    exit="hidden"
+    :variants="staggerContainer"
   >
-    <section>
+    <motion.section
+      :variants="effect"
+    >
       <!-- 1st -->
       <div
         class="
@@ -437,8 +448,9 @@ const requestStrings = computed(() => {
       </div>
       <!-- 3rd -->
       <div />
-    </section>
-    <section
+    </motion.section>
+    <motion.section
+      :variants="effect"
       class="grid grid-flow-row *:grid *:grid-cols-[4rem_2.5rem_auto]
     *:not-last:border-b *:*:not-last:border-r *:*:first:border-dotted
     *:*:not-first:border-solid *:*:not-last:justify-center *:not-first:not-last:border-dotted"
@@ -474,8 +486,9 @@ const requestStrings = computed(() => {
         <p>{{ item.month }}</p>
         <p>{{ item.institution }}・{{ item.degree }}・{{ item.major }}</p>
       </article>
-    </section>
-    <section
+    </motion.section>
+    <motion.section
+      :variants="effect"
       class="grid grid-flow-row *:grid *:grid-cols-[4rem_2.5rem_auto]
     *:not-last:border-b *:*:not-last:border-r *:*:first:border-dotted
     *:*:not-first:border-solid *:*:not-last:justify-center *:not-first:not-last:border-dotted"
@@ -503,8 +516,8 @@ const requestStrings = computed(() => {
         <p>ー</p>
         <p>ー</p>
       </article>
-    </section>
-    <section class="flex flex-col">
+    </motion.section>
+    <motion.section :variants="effect" class="flex flex-col">
       <h4 class="resume-padding">
         {{ LABELS.MOTIVE }}
       </h4>
@@ -517,8 +530,8 @@ const requestStrings = computed(() => {
           {{ item.value }}
         </p>
       </div>
-    </section>
-    <section class="grid grid-rows-[{{ 1 + requestStrings.length }}] *:first:border-b-2 *:not-first:*:not-last:border-b *:not-first:*:not-last:border-dashed">
+    </motion.section>
+    <motion.section :variants="effect" class="grid grid-rows-[{{ 1 + requestStrings.length }}] *:first:border-b-2 *:not-first:*:not-last:border-b *:not-first:*:not-last:border-dashed">
       <h4 class="resume-padding">
         {{ LABELS.REQUEST }}
       </h4>
@@ -531,6 +544,6 @@ const requestStrings = computed(() => {
           {{ line }}
         </article>
       </div>
-    </section>
-  </div>
+    </motion.section>
+  </motion.div>
 </template>
