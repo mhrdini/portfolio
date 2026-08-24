@@ -10,25 +10,24 @@ const isHovered = ref(false)
 
 const text: MotionProps['variants'] = {
   beforeEnter: {
-    y: -20,
     opacity: 0,
+    transition: {
+      duration: 0,
+    },
   },
 
   enter: {
-    y: 0,
     opacity: 1,
     transition: {
-      duration: 0.2,
+      duration: 1,
       ease: BEZIER_EASE,
     },
   },
 
   exit: {
-    y: 20,
     opacity: 0,
     transition: {
-      duration: 0.2,
-      ease: BEZIER_EASE,
+      duration: 0,
     },
   },
 }
@@ -90,8 +89,8 @@ const shape = {
         v-if="current === 'en'"
         key="en"
         layout
-        :initial="current === 'en' ? 'enter' : 'beforeEnter'"
-        animate="enter"
+        initial="beforeEnter"
+        :animate="current === 'en' ? 'enter' : 'beforeEnter'"
         exit="exit"
         :variants="text"
       >
@@ -102,8 +101,8 @@ const shape = {
         v-else
         key="ja"
         layout
-        :initial="current === 'ja' ? 'enter' : 'beforeEnter'"
-        animate="enter"
+        initial="beforeEnter"
+        :animate="current === 'ja' ? 'enter' : 'beforeEnter'"
         exit="exit"
         :variants="text"
       >
