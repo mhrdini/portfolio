@@ -42,14 +42,19 @@ const underline: MotionProps['variants'] = {
 </script>
 
 <template>
-  <button
+  <motion.button
     class="relative overflow-clip
   gap-2 flex-button button-shadow items-between"
+    initial="hidden"
+    animate="visible"
+    exit="hidden"
+    :variants="opacityReveal"
     @click="toggle"
   >
     <motion.div
       :initial="current === 'en' ? 'on' : 'off'"
       :animate="current === 'en' ? 'on' : 'off'"
+      while-hover="on"
       :variants="text"
     >
       EN
@@ -62,9 +67,10 @@ const underline: MotionProps['variants'] = {
     <motion.div
       :initial="current === 'ja' ? 'on' : 'off'"
       :animate="current === 'ja' ? 'on' : 'off'"
+      while-hover="on"
       :variants="text"
     >
       JP
     </motion.div>
-  </button>
+  </motion.button>
 </template>

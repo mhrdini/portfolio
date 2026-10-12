@@ -4,7 +4,7 @@ const { current } = storeToRefs(i18n)
 </script>
 
 <template>
-  <div class="text-neutral-800">
+  <div class="cursor-default text-neutral-800 select-none">
     <ResumeEn v-if="current === 'en'" />
     <ResumeJa2 v-else />
   </div>
