@@ -3,7 +3,6 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './schemaTypes'
 
-
 const projectId = 'gc83gjgk'
 const dataset = 'production'
 
