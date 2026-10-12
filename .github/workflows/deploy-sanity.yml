@@ -37,4 +37,5 @@ jobs:
       working-directory: apps/studio
       env:
         SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-      run: pnpm exec sanity deploy
+        SANITY_STUDIO_URL: ${{ secrets.SANITY_STUDIO_URL }}
+      run: pnpm exec sanity deploy --url "$SANITY_STUDIO_URL"

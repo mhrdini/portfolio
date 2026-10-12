@@ -20,7 +20,7 @@
     "inquirer": "catalog:"
   },
   "validate-branch-name": {
-    "pattern": "^(main){1}$|^(feat|fix|hotfix|release|chore)/.+$",
+    "pattern": "^(main|staging){1}$|^(feat|fix|hotfix|release|chore)/.+$",
     "errorMsg": "Invalid branch name \n Ex. [main, develop, feature/feature-info, fix/112-fix-info, hotfix/112-hotfix-info, release/1.0.0, chores/chores-info]"
   },
   "dependencies": {
