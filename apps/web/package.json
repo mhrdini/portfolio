@@ -36,6 +36,6 @@
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "tw-animate-css": "catalog:ui",
-    "wrangler": "^4.149.0"
+    "wrangler": "catalog:"
   }
 }
