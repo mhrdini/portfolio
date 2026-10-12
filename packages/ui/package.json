@@ -6,6 +6,7 @@
     "./lib/*": "./src/lib/*.ts"
   },
   "scripts": {
+    "build": "pnpm run build:styles",
     "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css",
     "dev": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css --watch"
   },
