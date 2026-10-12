@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MotionProps } from 'motion-v'
 import { motion } from 'motion-v'
-import { resumeQuery } from '~/queries/resume'
+import { publicResumeQuery } from '~/queries/public-resume'
 
 const LABELS = {
   PERSONAL: {
@@ -19,8 +19,8 @@ const LABELS = {
   REQUEST: '本人希望記入欄 　（特に給料、職種、勤務時間、勤務地、その他についての希望などがあれば記入）',
 }
 
-const { data: resume } = await useSanityQuery<ResumeQueryResult>(
-  resumeQuery,
+const { data: resume } = await useSanityQuery<PublicResumeQueryResult>(
+  publicResumeQuery,
   {
     language: 'ja',
   },
@@ -294,6 +294,7 @@ const effect: MotionProps['variants'] = opacityReveal
           flex-col gap-3 items-center justify-center"
           >
             <NuxtImg
+              v-if="photo"
               class="absolute inset-0 w-full h-full object-cover"
               :src="photo"
               width="800"

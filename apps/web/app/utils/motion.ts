@@ -49,7 +49,7 @@ export const yReveal: MotionProps['variants'] = {
     const index = typeof custom === 'number' ? custom : 0
     return {
       opacity: 0,
-      y: '-75%',
+      y: '-1rem',
       transition: {
         delay: index * STAGGER,
         duration: EFFECT_DURATION,

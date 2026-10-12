@@ -27,6 +27,12 @@ export default defineType({
     }),
 
     defineField({
+      name: 'resumeFile',
+      title: 'Resume File',
+      type: 'file',
+    }),
+
+    defineField({
       name: 'sections',
       title: 'Sections',
       type: 'array',
