@@ -6,7 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "assets": {
-    "directory": "./.output/public/",
+    "directory": ".output/public",
     "binding": "ASSETS"
   },
   "previews": {},
