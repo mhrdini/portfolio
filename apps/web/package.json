@@ -35,6 +35,7 @@
     "@antfu/eslint-config": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
-    "tw-animate-css": "catalog:ui"
+    "tw-animate-css": "catalog:ui",
+    "wrangler": "^4.149.0"
   }
 }
