@@ -8,7 +8,7 @@ on:
       - 'apps/studio/**'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
-      - '.github/workflows/deploy-studio.yml'
+      - '.github/workflows/deploy-sanity.yml'
 
 jobs:
   sanity-deploy:
