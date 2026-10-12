@@ -45,6 +45,9 @@ catalogs:
     conventional-changelog-conventionalcommits:
       specifier: ^9.3.1
       version: 9.3.1
+    date-fns:
+      specifier: ^4.4.0
+      version: 4.4.0
     dotenv:
       specifier: ^17.2.3
       version: 17.4.2
@@ -324,7 +327,7 @@ importers:
         specifier: catalog:nuxt
         version: 14.3.0(magicast@0.5.2)(nuxt@4.4.2(@babel/core@7.29.0)(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.0))(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@parcel/watcher@2.5.6)(@types/node@25.5.0)(@vue/compiler-sfc@3.5.31)(cac@6.7.14)(db0@0.3.4)(eslint@9.39.4(jiti@2.6.1))(ioredis@5.10.1)(lightningcss@1.33.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(pinia@3.0.4(typescript@6.0.2)(vue@3.5.31(typescript@6.0.2)))(rolldown@1.2.3)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.3)(rollup@4.60.1))(rollup@4.60.1)(srvx@0.11.14)(terser@5.46.1)(tsx@4.23.11)(typescript@6.0.2)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.33.0)(terser@5.46.1)(tsx@4.23.11)(yaml@2.9.0))(yaml@2.9.0))(vue@3.5.31(typescript@6.0.2))
       date-fns:
-        specifier: ^4.4.0
+        specifier: 'catalog:'
         version: 4.4.0
       lenis:
         specifier: catalog:ui
@@ -6240,6 +6243,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
